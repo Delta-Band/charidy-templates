@@ -1,0 +1,49 @@
+<template>
+  <div class="top-nav">
+    <section class="left">
+      <button>Exit</button>
+    </section>
+    <section class="right">
+      <button>Preview</button>
+      <button>Save</button>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "TopNav"
+};
+</script>
+
+<style lang="scss" scoped>
+.top-nav {
+  width: 100%;
+  flex-grow: 0;
+  border-bottom: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.79);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+button {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  transition: .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  padding: 10px 20px;
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(black, 0.1);
+  }
+}
+.right button {
+  // margin-left: 30px;
+}
+</style>

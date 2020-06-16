@@ -1,0 +1,19 @@
+<template>
+  <div class="content">
+    Content
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Content',
+}
+</script>
+
+<style scoped>
+.content {
+  width: 100%;
+  flex-grow: 1;
+  background: rgba(0, 128, 0, 0.283);
+}
+</style>
