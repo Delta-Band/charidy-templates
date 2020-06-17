@@ -5,28 +5,35 @@
     <div class="vertical-spacer" />
     <CoverMedia />
     <div class="vertical-spacer" />
-    <div class="divider" />
-    <div class="vertical-spacer" />
+    <!-- <div class="divider" />
+    <div class="vertical-spacer" />-->
     <CampaignTitle />
     <div class="vertical-spacer" />
-    <div class="divider" />
+    <!-- <div class="divider" />
+    <div class="vertical-spacer" />-->
+    <div class="footer">
+      <v-btn class="save-btn" text ripple rounded>
+      SAVE
+      <v-icon right>mdi-arrow-right</v-icon>
+    </v-btn>
+    </div>
     <div class="vertical-spacer" />
   </div>
 </template>
 
 <script>
-import Steps from './Steps.vue';
-import CoverMedia from './CoverMedia.vue';
-import CampaignTitle from './CampaignTitle.vue';
+import Steps from "./Steps.vue";
+import CoverMedia from "./CoverMedia.vue";
+import CampaignTitle from "./CampaignTitle.vue";
 
 export default {
-  name: 'Content',
+  name: "Content",
   components: {
     Steps,
     CoverMedia,
-    CampaignTitle,
+    CampaignTitle
   }
-}
+};
 </script>
 
 <style scoped>
@@ -54,4 +61,22 @@ export default {
   background: black;
 }
 
+.save-btn {
+  height: 45px;
+  padding: 0 4% !important;
+  text-transform: none;
+  font-family: inherit;
+  letter-spacing: unset;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10%;
+  width: 100%;
+}
 </style>

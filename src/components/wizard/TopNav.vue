@@ -2,18 +2,18 @@
   <div class="top-nav">
     <section class="left">
       <button>
-        <unicon name="arrow-left" class="icon" ></unicon>
+        <v-icon class="icon-left">mdi-arrow-left</v-icon>
         Exit
       </button>
     </section>
     <section class="right">
       <button>
-        <unicon name="eye" class="icon" ></unicon>
+        <v-icon class="icon-left">mdi-eye-outline</v-icon>
         Preview
       </button>
       <button>
-        <unicon name="save" class="icon" ></unicon>
         Save
+        <v-icon class="icon-right">mdi-arrow-right</v-icon>
       </button>
     </section>
   </div>

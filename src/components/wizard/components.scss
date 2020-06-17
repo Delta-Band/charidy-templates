@@ -12,9 +12,17 @@
   display: flex;
   align-items: center;
 
-  .icon {
+  .icon-left,
+  .icon-right {
     height: 24px;
+  }
+
+  .icon-left {
     margin-right: 5px;
+  }
+
+  .icon-right {
+    margin-left: 5px;
   }
 
   &:hover {
