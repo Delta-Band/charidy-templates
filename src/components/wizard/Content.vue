@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <div class="vertical-spacer-top" />
     <Steps />
     <div class="vertical-spacer" />
     <CoverMedia />
@@ -25,6 +26,7 @@ export default {
 <style scoped>
 .content {
   width: 100%;
+  overflow: auto;
   flex-grow: 1;
   box-sizing: border-box;
 }
@@ -33,6 +35,11 @@ export default {
   height: 15%;
   min-height: 106px;
   max-height: 150px;
+}
+
+.vertical-spacer-top {
+  height: 10%;
+  max-height: 100px;
 }
 
 .divider {

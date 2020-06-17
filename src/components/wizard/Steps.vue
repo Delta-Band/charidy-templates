@@ -30,7 +30,6 @@ export default {
 section {
   width: 100%;
   @extend .section;
-  margin-top: 50px;
 }
 
 .steps {
