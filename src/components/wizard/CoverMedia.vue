@@ -7,7 +7,13 @@
         (you do not have to include a video)
       </p>
     </section>
-    <section class="right-top"></section>
+    <section class="right-top">
+      <v-tabs>
+        <v-tab>Item One</v-tab>
+        <v-tab>Item Two</v-tab>
+        <v-tab>Item Three</v-tab>
+      </v-tabs>
+    </section>
   </div>
 </template>
 
