@@ -1,12 +1,17 @@
 <template>
   <div class="content">
-    Content
+    <Steps />
   </div>
 </template>
 
 <script>
+import Steps from './Steps.vue';
+
 export default {
   name: 'Content',
+  components: {
+    Steps,
+  }
 }
 </script>
 

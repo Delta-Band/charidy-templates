@@ -1,11 +1,20 @@
 <template>
   <div class="top-nav">
     <section class="left">
-      <button>Exit</button>
+      <button>
+        <unicon name="arrow-left" class="icon" ></unicon>
+        Exit
+      </button>
     </section>
     <section class="right">
-      <button>Preview</button>
-      <button>Save</button>
+      <button>
+        <unicon name="eye" class="icon" ></unicon>
+        Preview
+      </button>
+      <button>
+        <unicon name="save" class="icon" ></unicon>
+        Save
+      </button>
     </section>
   </div>
 </template>
@@ -38,10 +47,20 @@ button {
   transition: .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   padding: 10px 20px;
   border-radius: 3px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    height: 24px;
+    margin-right: 5px;
+  }
 
   &:hover {
     background: rgba(black, 0.1);
   }
+}
+section {
+  display: flex;
 }
 .right button {
   // margin-left: 30px;
