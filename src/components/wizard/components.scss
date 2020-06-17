@@ -1,0 +1,33 @@
+@import "./colors.scss";
+
+.button {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  transition: .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  padding: 10px 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    height: 24px;
+    margin-right: 5px;
+  }
+
+  &:hover {
+    background: $btn-hover-bg;
+  }
+}
+
+.section {
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 18px;
+}

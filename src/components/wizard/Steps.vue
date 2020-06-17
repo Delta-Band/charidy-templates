@@ -1,14 +1,16 @@
 <template>
+  <section>
+  <div class="line" />
   <div class="steps">
-    <div class="line" />
-    <Step />
-    <Step />
-    <Step />
-    <Step />
-    <Step />
-    <Step />
-    <Step />
+    <Step title="Cover" />
+    <Step title="Goal &amp; Time" />
+    <Step title="Story" />
+    <Step title="Levels" />
+    <Step title="Teams" />
+    <Step title="Matchers" />
+    <Step title="Customize" />
   </div>
+  </section>
 </template>
 
 <script>
@@ -23,12 +25,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./components.scss";
+
+section {
+  width: 100%;
+  @extend .section;
+  margin-top: 50px;
+}
+
 .steps {
   width: 100%;
-  height: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   position: relative;
 }
 
@@ -36,9 +45,6 @@ export default {
   width: 100%;
   height: 1px;
   background: black;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-12px);
+  transform: translateY(31px);
 }
 </style>

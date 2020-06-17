@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./colors.scss";
+@import "./components.scss";
+
 .top-nav {
   width: 100%;
   flex-grow: 0;
@@ -37,32 +40,12 @@ export default {
   padding: 10px 20px;
   box-sizing: border-box;
 }
-button {
-  background: transparent;
-  border: none;
-  font-size: 15px;
-  text-transform: uppercase;
-  outline: none;
-  cursor: pointer;
-  transition: .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  padding: 10px 20px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
 
-  .icon {
-    height: 24px;
-    margin-right: 5px;
-  }
-
-  &:hover {
-    background: rgba(black, 0.1);
-  }
-}
 section {
   display: flex;
 }
-.right button {
-  // margin-left: 30px;
+button {
+  @extend .button;
+  text-transform: uppercase;
 }
 </style>
