@@ -1,26 +1,29 @@
 <template>
   <section>
   <div class="line" />
-  <div class="steps">
-    <Step title="Cover" />
-    <Step title="Goal &amp; Time" />
-    <Step title="Story" />
-    <Step title="Levels" />
-    <Step title="Teams" />
-    <Step title="Matchers" />
-    <Step title="Customize" />
+
+  <div class="steps" v-if="!wizardPortrait">
+    <Step completed="50" title="Cover" />
+    <Step completed="25" title="Goal &amp; Time" />
+    <Step completed="10" title="Story" />
+    <Step completed="0" title="Levels" />
+    <Step completed="0" title="Teams" />
+    <Step completed="75" title="Matchers" />
+    <Step completed="0" title="Customize" />
   </div>
   </section>
 </template>
 
 <script>
 import Step from './Step.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Steps",
   components: {
     Step,
-  }
+  },
+  computed: mapGetters(['wizardPortrait']),
 };
 </script>
 

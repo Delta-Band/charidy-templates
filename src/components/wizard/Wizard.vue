@@ -8,12 +8,25 @@
 <script>
 import TopNav from "./TopNav.vue";
 import Content from "./Content.vue";
+import { mapActions } from 'vuex';
 
 export default {
   name: "Wizard",
   components: {
     TopNav,
     Content
+  },
+  created() {
+    window.addEventListener("resize", this.onRisize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onRisize);
+  },
+  methods: {
+    ...mapActions(['wizardUpdatePortrait']),
+    onRisize() {
+      this.wizardUpdatePortrait(this.$el.clientWidth);
+    }
   }
 };
 </script>

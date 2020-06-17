@@ -111,7 +111,7 @@ label {
     box-sizing: border-box;
 
     .upload-btn {
-      height: 45px;
+      height: 40px;
       padding: 0 4%;
       text-transform: none;
       font-family: inherit;

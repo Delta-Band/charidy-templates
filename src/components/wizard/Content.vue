@@ -13,9 +13,9 @@
     <div class="vertical-spacer" />-->
     <div class="footer">
       <v-btn class="save-btn" text ripple rounded>
-      SAVE
-      <v-icon right>mdi-arrow-right</v-icon>
-    </v-btn>
+        SAVE
+        <v-icon class="icon-right">mdi-arrow-right</v-icon>
+      </v-btn>
     </div>
     <div class="vertical-spacer" />
   </div>
@@ -36,12 +36,37 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "./components.scss";
+
 .content {
   width: 100%;
   overflow: auto;
   flex-grow: 1;
   box-sizing: border-box;
+
+  .save-btn {
+    height: 40px;
+    padding: 0 4% !important;
+    text-transform: none;
+    font-family: inherit;
+    letter-spacing: unset;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    transition: 0.5s $ease;
+
+    &:hover {
+      .icon-right {
+        transform: translateX(30px);
+      }
+    }
+
+    .icon-right {
+      transform: translateX(20px);
+      margin-left: -10px;
+    }
+  }
 }
 
 .vertical-spacer {
@@ -59,17 +84,6 @@ export default {
   width: 100%;
   height: 1px;
   background: black;
-}
-
-.save-btn {
-  height: 45px;
-  padding: 0 4% !important;
-  text-transform: none;
-  font-family: inherit;
-  letter-spacing: unset;
-  font-size: 16px;
-  background-color: black;
-  color: white;
 }
 
 .footer {

@@ -1,7 +1,7 @@
 <template>
   <button class="step">
     <div class="outer-circle">
-      <div class="inner-circle"></div>
+      <div class="inner-circle" v-bind:style="{'height': `${completed}%`, 'width': `${completed}%`}"></div>
     </div>
     <label>{{title}}</label>
   </button>
@@ -11,7 +11,8 @@
 export default {
   name: "Step",
   props: {
-    title: String
+    title: String,
+    completed: String,
   }
 };
 </script>
@@ -34,10 +35,15 @@ export default {
   width: 40px;
   height: 40px;
   background: rgb(194, 194, 194);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inner-circle {
   border-radius: 50px;
+  background-color: black;
+  transition: .5s $ease;
 }
 
 label {

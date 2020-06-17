@@ -6,9 +6,9 @@
     </section>
     <section class="right-bottom">
       <div class="input-title">Title</div>
-      <v-text-field height="50" class="text-input" :rules="rules" ></v-text-field>
+      <v-text-field height="50" class="text-input" ></v-text-field>
       <div class="input-title">Subtitle</div>
-      <v-text-field height="50" class="text-input" :rules="rules" ></v-text-field>
+      <v-text-field height="50" class="text-input" ></v-text-field>
     </section>
   </div>
 </template>

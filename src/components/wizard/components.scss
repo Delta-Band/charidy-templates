@@ -1,12 +1,14 @@
 @import "./colors.scss";
 
+$ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
 .button {
   background: transparent;
   border: none;
   font-size: 15px;
   outline: none;
   cursor: pointer;
-  transition: .5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: .5s $ease;
   padding: 10px 20px;
   border-radius: 3px;
   display: flex;
