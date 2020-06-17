@@ -32,3 +32,22 @@
   font-size: 18px;
   margin-bottom: 8px;
 }
+
+.text-input {
+  margin-bottom: 20px;
+  margin-top: 0;
+
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+
+  &::v-deep .v-input__slot {
+    background-color: rgba(255, 255, 255, 0.5);
+    // border-top-left-radius: 5px;
+    // border-top-right-radius: 5px;
+  }
+
+  &::v-deep input {
+    padding: 0 10px;
+  }
+}

@@ -2,26 +2,20 @@
   <div class="cover-media">
     <section class="left-top">
       <label>Cover Media</label>
-      <p>
-        The cover image will be used as a cover for the video
-        <br />(you do not have to include a video)
-      </p>
+      <p>Add an image that clearly represents your project.</p>
+      <p>Choose one that looks good at different sizes. It will appear in different sizes in different places: on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.</p>
+      <p>You may want to avoid including banners, badges, and text because they may not be legible at smaller sizes.</p>
+      <p>Your image should be at least 1024x576 pixels. It will be cropped to a 16:9 ratio.</p>
     </section>
-    <section class="right-top">
-      <v-tabs
-        v-model="tab"
-        background-color="rgba(0, 0, 0, 0)"
-      >
+    <section class="right-bottom">
+      <v-tabs v-model="tab" background-color="rgba(0, 0, 0, 0)">
         <v-tab class="tab" v-for="item in items" :key="item.tab">
           <v-icon class="icon">{{item.icon}}</v-icon>
           <div class="txt">{{item.tab}}</div>
         </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
-        <v-tab-item
-          v-for="item in items"
-          :key="item.tab"
-        >
+        <v-tab-item v-for="item in items" :key="item.tab">
           <v-responsive :aspect-ratio="16/9" class="drop-zone">
             <div class="contnent">
               <div>{{item.content}}</div>
@@ -42,8 +36,18 @@ export default {
     return {
       tab: null,
       items: [
-        { tab: "Image", icon: "mdi-image-outline", content: "Drop Image", types:"png / jpg" },
-        { tab: "Video", icon: "mdi-play-box-outline", content: "Drop Video", types:"mp4" },
+        {
+          tab: "Image",
+          icon: "mdi-image-outline",
+          content: "Drop Image",
+          types: "png / jpg"
+        },
+        {
+          tab: "Video",
+          icon: "mdi-play-box-outline",
+          content: "Drop Video",
+          types: "mp4"
+        }
       ]
     };
   }
@@ -65,10 +69,18 @@ export default {
   flex-direction: column;
   text-align: left;
   padding-right: 10%;
+
+  &::v-deep p {
+    margin-bottom: 20px;
+  }
 }
 
-.right-top {
+.right-bottom {
   width: 60%;
+
+  &::v-deep .theme--light.v-tabs-items {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 label {

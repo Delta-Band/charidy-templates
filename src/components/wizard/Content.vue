@@ -7,18 +7,24 @@
     <div class="vertical-spacer" />
     <div class="divider" />
     <div class="vertical-spacer" />
+    <CampaignTitle />
+    <div class="vertical-spacer" />
+    <div class="divider" />
+    <div class="vertical-spacer" />
   </div>
 </template>
 
 <script>
 import Steps from './Steps.vue';
 import CoverMedia from './CoverMedia.vue';
+import CampaignTitle from './CampaignTitle.vue';
 
 export default {
   name: 'Content',
   components: {
     Steps,
     CoverMedia,
+    CampaignTitle,
   }
 }
 </script>
