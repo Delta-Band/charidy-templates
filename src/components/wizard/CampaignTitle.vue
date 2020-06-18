@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./components.scss";
+@import "./shared-styles/index";
 
 .campaign-title {
   width: 100%;

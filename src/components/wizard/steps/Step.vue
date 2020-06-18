@@ -12,14 +12,13 @@ export default {
   name: "Step",
   props: {
     title: String,
-    completed: String,
+    completed: Number,
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./colors.scss";
-@import "./components.scss";
+@import "../shared-styles/index";
 
 .step {
   display: flex;

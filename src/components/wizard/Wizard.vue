@@ -1,14 +1,16 @@
 <template>
-  <div class="wizard">
-    <TopNav />
-    <Content />
-  </div>
+  <v-app>
+    <div class="wizard">
+      <TopNav />
+      <Content />
+    </div>
+  </v-app>
 </template>
 
 <script>
 import TopNav from "./TopNav.vue";
 import Content from "./Content.vue";
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
   name: "Wizard",
@@ -22,8 +24,11 @@ export default {
   destroyed() {
     window.removeEventListener("resize", this.onRisize);
   },
+  mounted() {
+    this.wizardUpdatePortrait(this.$el.clientWidth);
+  },
   methods: {
-    ...mapActions(['wizardUpdatePortrait']),
+    ...mapActions(["wizardUpdatePortrait"]),
     onRisize() {
       this.wizardUpdatePortrait(this.$el.clientWidth);
     }
@@ -32,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./colors.scss";
+@import "./shared-styles/index";
 
 .wizard {
   width: 100%;
@@ -42,5 +47,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
+  & >>> .v-menu__content {
+    color: red;
+  }
 }
+</style>
+
+<style lang="scss" >
+  .v-menu__content {
+    text-align: left;
+  }
 </style>

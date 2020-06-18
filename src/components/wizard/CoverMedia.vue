@@ -8,13 +8,13 @@
       <p>Your image should be at least 1024x576 pixels. It will be cropped to a 16:9 ratio.</p>
     </section>
     <section class="right-bottom">
-      <v-tabs v-model="tab" background-color="rgba(0, 0, 0, 0)">
+      <v-tabs background-color="rgba(0, 0, 0, 0)">
         <v-tab class="tab" v-for="item in items" :key="item.tab">
           <v-icon class="icon">{{item.icon}}</v-icon>
           <div class="txt">{{item.tab}}</div>
         </v-tab>
       </v-tabs>
-      <v-tabs-items v-model="tab">
+      <v-tabs-items>
         <v-tab-item v-for="item in items" :key="item.tab">
           <v-responsive :aspect-ratio="16/9" class="drop-zone">
             <div class="contnent">
@@ -34,7 +34,6 @@ export default {
   name: "CoverMedia",
   data() {
     return {
-      tab: null,
       items: [
         {
           tab: "Image",
@@ -55,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./components.scss";
+@import "./shared-styles/index";
 
 .cover-media {
   width: 100%;

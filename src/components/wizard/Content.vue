@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Steps from "./Steps.vue";
+import Steps from "./steps/Steps.vue";
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./components.scss";
+@import "./shared-styles/index";
 
 .content {
   width: 100%;
@@ -48,6 +48,7 @@ export default {
   .save-btn {
     height: 40px;
     padding: 0 4% !important;
+    min-width: 150px;
     text-transform: none;
     font-family: inherit;
     letter-spacing: unset;
