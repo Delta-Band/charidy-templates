@@ -4,7 +4,7 @@
 
     <div class="steps" v-if="!wizardPortrait">
       <template v-for="step in steps">
-        <Step v-bind:completed="step.completed" title="step.txt" :key="step.txt" />
+        <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" />
       </template>
     </div>
     <v-select
