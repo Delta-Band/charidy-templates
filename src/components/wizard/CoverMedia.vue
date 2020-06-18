@@ -105,10 +105,7 @@ export default {
 
 .top {
   text-align: left;
-}
-
-.bottom {
-
+  margin-bottom: 30px;
 }
 
 label {
