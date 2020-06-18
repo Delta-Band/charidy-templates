@@ -99,30 +99,4 @@ section {
   background: black;
   transform: translateY(31px);
 }
-
-.step-menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-  .txt {
-    flex-shrink: 0;
-    width: 93px;
-  }
-
-  .bar {
-    width: 50%;
-    height: 10px;
-    position: relative;;
-    border: 1px solid $blue;
-    border-radius: 10px;
-
-    .completed {
-      height: 100%;
-      background: $blue;
-      border-radius: 10px;
-    }
-  }
-}
 </style>
