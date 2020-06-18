@@ -73,9 +73,6 @@ export default {
   },
   computed: {
     ...mapGetters(["wizardPortrait"]),
-    stepsTxt: function() {
-      return this.steps.map(step => step.txt);
-    }
   }
 };
 </script>
