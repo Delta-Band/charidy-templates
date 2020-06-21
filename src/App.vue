@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <Wizard />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Wizard from './components/wizard/Wizard';
-
 export default {
   name: 'App',
-  components: {
-    Wizard,
-  }
 }
 </script>
 
