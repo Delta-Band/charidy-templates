@@ -68,11 +68,13 @@ export default {
     overflow: hidden;
     will-change: height opacity;
     transition: 0.5s $ease;
+    transform: scale(0.7);
     opacity: 0;
 
     &.open {
       transition: 0.5s $ease, opacity 0.5s $ease 0.25s;
       opacity: 1;
+      transform: scale(1);
     }
   }
 
@@ -95,7 +97,7 @@ export default {
 
     .icon {
       transition: 0.25s $ease;
-      margin-top: 10px;
+      margin-top: 15px;
       background-color: $yellow;
       color: white;
       border-radius: 40px;

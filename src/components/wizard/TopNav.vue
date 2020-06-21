@@ -31,7 +31,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 11px 20px 10px;
+  padding: 11px 40px 10px 20px;
   box-sizing: border-box;
 
   .btn {
