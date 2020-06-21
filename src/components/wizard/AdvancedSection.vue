@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import VueScrollTo from "vue-scrollto";
+
 export default {
   name: "AdvancedSection",
   props: {
@@ -43,6 +45,10 @@ export default {
   methods: {
     toggleAdvancedMode() {
       this.$emit("toggle");
+      VueScrollTo.scrollTo('#advanced-content', 500, {
+        container: '#wizard-content',
+        easing: [0.25, 0.46, 0.45, 0.94],
+      });
     },
     onRisize() {
       const $advancedContent = document.getElementById("advanced-content");

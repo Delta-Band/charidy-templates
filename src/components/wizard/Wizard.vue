@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <div class="wizard">
+    <div id="wizard">
       <TopNav />
-      <div class="content">
+      <div id="wizard-content">
         <Steps />
         <Cover />
       </div>
@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 @import "./shared-styles/index";
 
-.wizard {
+#wizard {
   width: 100%;
   height: 100%;
   background-color: rgb(238, 238, 238);
@@ -58,7 +58,7 @@ export default {
   }
 }
 
-.content {
+#wizard-content {
   width: 100%;
   overflow: auto;
   flex-grow: 1;
