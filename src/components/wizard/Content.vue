@@ -13,15 +13,6 @@
     <div class="vertical-spacer" />-->
     <CampaignTitle />
     <div class="vertical-spacer" />
-    <!-- <div class="divider" />
-    <div class="vertical-spacer" />-->
-    <div class="footer">
-      <v-btn class="save-btn" text ripple rounded>
-        SAVE
-        <v-icon class="icon-right">mdi-arrow-right</v-icon>
-      </v-btn>
-    </div>
-    <div class="vertical-spacer" />
   </div>
 </template>
 
@@ -52,30 +43,6 @@ export default {
   overflow: auto;
   flex-grow: 1;
   box-sizing: border-box;
-
-  .save-btn {
-    height: 40px;
-    padding: 0 4% !important;
-    min-width: 150px;
-    text-transform: none;
-    font-family: inherit;
-    letter-spacing: unset;
-    font-size: 16px;
-    background-color: black;
-    color: white;
-    transition: 0.5s $ease;
-
-    &:hover {
-      .icon-right {
-        transform: translateX(30px);
-      }
-    }
-
-    .icon-right {
-      transform: translateX(20px);
-      margin-left: -10px;
-    }
-  }
 }
 
 .vertical-spacer {
@@ -99,11 +66,11 @@ export default {
   background: black;
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 10%;
-  width: 100%;
-}
+// .footer {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   padding: 0 20px;
+//   width: 100%;
+// }
 </style>

@@ -1,20 +1,15 @@
 <template>
   <div class="top-nav">
     <section class="left">
-      <button>
-        <v-icon class="icon-left">mdi-arrow-left</v-icon>
-        Exit
-      </button>
+      <v-btn class="exit btn" text ripple rounded>
+        <v-icon class="icon">mdi-arrow-left</v-icon>Exit
+      </v-btn>
     </section>
     <section class="right">
-      <button>
-        <v-icon class="icon-left">mdi-eye-outline</v-icon>
-        Preview
-      </button>
-      <button>
-        Save
-        <v-icon class="icon-right">mdi-arrow-right</v-icon>
-      </button>
+      <v-btn class="preview btn" text ripple rounded>
+        <v-icon class="icon">mdi-eye-outline</v-icon>Preview
+      </v-btn>
+      <v-btn class="save btn" text ripple rounded>Save</v-btn>
     </section>
   </div>
 </template>
@@ -36,15 +31,43 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 11px 20px 10px;
   box-sizing: border-box;
+
+  .btn {
+    padding: 0 20px;
+    min-width: 150px;
+    text-transform: none;
+    font-family: inherit;
+    letter-spacing: unset;
+    font-size: 16px;
+    transition: 0.5s $ease;
+
+    .icon {
+      margin-right: 10px;
+      font-size: 22px;
+      transform: translateY(-0.5px);
+    }
+
+    &.save {
+      background-color: black;
+      color: white;
+      padding: 0 40px;
+    }
+  }
+
+  .right {
+    .btn {
+      margin-left: 20px;
+    }
+  }
 }
 
 section {
   display: flex;
 }
-button {
-  @extend .button;
-  text-transform: uppercase;
-}
+// button {
+//   @extend .button;
+//   text-transform: uppercase;
+// }
 </style>
