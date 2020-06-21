@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="step" text ripple rounded>
+  <v-btn class="step" text ripple>
     <router-link :to="{name: linkTo}" class="link">
       <div class="outer-circle">
         <div
@@ -67,7 +67,7 @@ export default {
   cursor: pointer;
 }
 
-button {
-  @extend .button;
-}
+// button {
+//   @extend .button;
+// }
 </style>
