@@ -1,16 +1,7 @@
 <template>
-  <div class="content">
-    <div class="vertical-spacer-top" :class="{
-        'portrait': wizardPortrait,
-    }" />
-    <Steps />
-    <div class="vertical-spacer" :class="{
-        'portrait': wizardPortrait,
-    }" />
+  <div class="cover-page">
     <CoverMedia />
     <div class="vertical-spacer" />
-    <!-- <div class="divider" />
-    <div class="vertical-spacer" />-->
     <CampaignTitle />
     <div
       class="advanced-container"
@@ -35,16 +26,14 @@
 </template>
 
 <script>
-import Steps from "./steps/Steps.vue";
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Content",
+  name: "Cover",
   components: {
-    Steps,
     CoverMedia,
     CampaignTitle,
     Countdown
@@ -79,14 +68,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./shared-styles/index";
+@import "../shared-styles/index";
 
-.content {
-  width: 100%;
-  overflow: auto;
-  flex-grow: 1;
-  box-sizing: border-box;
-
+.cover-page {
   .advanced-btn {
     display: flex;
     flex-direction: column;
@@ -117,39 +101,28 @@ export default {
       }
     }
   }
-}
 
-.vertical-spacer {
-  height: 15%;
-  min-height: 106px;
-  max-height: 150px;
-
-  &.portrait {
-    height: calc(15% - 30px);
+  .vertical-spacer {
+    @extend .vertical-spacer;
   }
-}
 
-.vertical-spacer-top {
-  height: 10%;
-  max-height: 100px;
-}
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: black;
+  }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background: black;
-}
+  .advanced-container {
+    height: 200px;
+    overflow: hidden;
+    will-change: height opacity;
+    transition: 0.5s $ease;
+    opacity: 0;
 
-.advanced-container {
-  height: 200px;
-  overflow: hidden;
-  will-change: height opacity;
-  transition: 0.5s $ease;
-  opacity: 0;
-
-  &.open {
-    transition: 0.5s $ease, opacity .5s $ease .25s;
-    opacity: 1;
+    &.open {
+      transition: 0.5s $ease, opacity 0.5s $ease 0.25s;
+      opacity: 1;
+    }
   }
 }
 </style>

@@ -2,21 +2,26 @@
   <v-app>
     <div class="wizard">
       <TopNav />
-      <Content />
+      <div class="content">
+        <Steps />
+        <Cover />
+      </div>
     </div>
   </v-app>
 </template>
 
 <script>
 import TopNav from "./TopNav.vue";
-import Content from "./Content.vue";
+import Steps from "./steps/Steps.vue";
+import Cover from "./cover/Cover.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Wizard",
   components: {
     TopNav,
-    Content
+    Steps,
+    Cover
   },
   created() {
     window.addEventListener("resize", this.onRisize);
@@ -52,10 +57,17 @@ export default {
     color: red;
   }
 }
+
+.content {
+  width: 100%;
+  overflow: auto;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
 </style>
 
 <style lang="scss" >
-  .v-menu__content {
-    text-align: left;
-  }
+.v-menu__content {
+  text-align: left;
+}
 </style>

@@ -1,28 +1,33 @@
 <template>
-  <section>
-    <div class="line" v-if="!wizardPortrait" />
+  <div>
+    <div class="vertical-spacer-top" :class="{
+        'portrait': wizardPortrait,
+    }" />
+    <section>
+      <div class="line" v-if="!wizardPortrait" />
 
-    <div class="steps" v-if="!wizardPortrait">
-      <template v-for="step in steps">
-        <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" />
-      </template>
-    </div>
-    <v-select
-      v-else
-      :items="steps"
-      item-text="txt"
-      label="Step"
-      solo
-      v-bind:value="currentStep"
-    >
-      <template v-slot:item="{item}">
-        <StepAsMenuItem v-bind:title="item.txt" v-bind:completed="item.completed" v-bind:selected="currentStep === item.txt" />
-      </template>
-      <template v-slot:selection="{item}">
-        <StepAsMenuItem v-bind:title="item.txt" v-bind:completed="item.completed" selected />
-      </template>
-    </v-select>
-  </section>
+      <div class="steps" v-if="!wizardPortrait">
+        <template v-for="step in steps">
+          <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" />
+        </template>
+      </div>
+      <v-select v-else :items="steps" item-text="txt" label="Step" solo v-bind:value="currentStep">
+        <template v-slot:item="{item}">
+          <StepAsMenuItem
+            v-bind:title="item.txt"
+            v-bind:completed="item.completed"
+            v-bind:selected="currentStep === item.txt"
+          />
+        </template>
+        <template v-slot:selection="{item}">
+          <StepAsMenuItem v-bind:title="item.txt" v-bind:completed="item.completed" selected />
+        </template>
+      </v-select>
+    </section>
+    <div class="vertical-spacer" :class="{
+        'portrait': wizardPortrait,
+    }" />
+  </div>
 </template>
 
 <script>
@@ -34,7 +39,7 @@ export default {
   name: "Steps",
   components: {
     Step,
-    StepAsMenuItem,
+    StepAsMenuItem
   },
   data() {
     return {
@@ -72,7 +77,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["wizardPortrait"]),
+    ...mapGetters(["wizardPortrait"])
   }
 };
 </script>
@@ -98,5 +103,13 @@ section {
   height: 1px;
   background: black;
   transform: translateY(31px);
+}
+
+.vertical-spacer {
+  @extend .vertical-spacer;
+}
+
+.vertical-spacer-top {
+  @extend .vertical-spacer-top;
 }
 </style>

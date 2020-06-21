@@ -76,3 +76,18 @@ $ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     padding: 0 10px;
   }
 }
+
+.vertical-spacer {
+  height: 10vh;
+  min-height: 106px;
+  max-height: 150px;
+
+  &.portrait {
+    height: calc(15% - 30px);
+  }
+}
+
+.vertical-spacer-top {
+  height: 8vh;
+  max-height: 100px;
+}
