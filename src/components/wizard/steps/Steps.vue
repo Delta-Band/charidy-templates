@@ -8,7 +8,7 @@
 
       <div class="steps" v-if="!wizardPortrait">
         <template v-for="step in steps">
-          <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" />
+          <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" v-bind:linkTo="step.linkTo" />
         </template>
       </div>
       <v-select v-else :items="steps" item-text="txt" label="Step" solo v-bind:value="currentStep">
@@ -46,31 +46,38 @@ export default {
       steps: [
         {
           txt: "Cover",
-          completed: 50
+          completed: 50,
+          linkTo: 'wizard-cover',
         },
         {
           txt: "Goal & Time",
-          completed: 25
+          completed: 25,
+          linkTo: 'wizard-goal-and-time',
         },
         {
           txt: "Story",
-          completed: 10
+          completed: 10,
+          linkTo: 'wizard-story',
         },
         {
           txt: "Levels",
-          completed: 0
+          completed: 0,
+          linkTo: 'wizard-levels',
         },
         {
           txt: "Teams",
-          completed: 0
+          completed: 0,
+          linkTo: 'wizard-teams',
         },
         {
           txt: "Matchers",
-          completed: 75
+          completed: 75,
+          linkTo: 'wizard-matchers',
         },
         {
           txt: "Customize",
-          completed: 0
+          completed: 0,
+          linkTo: 'wizard-customize',
         }
       ],
       currentStep: "Cover"

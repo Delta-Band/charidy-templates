@@ -4,7 +4,7 @@
       <TopNav />
       <div id="wizard-content">
         <Steps />
-        <Cover />
+        <router-view />
       </div>
     </div>
   </v-app>
@@ -13,15 +13,13 @@
 <script>
 import TopNav from "./TopNav.vue";
 import Steps from "./steps/Steps.vue";
-import Cover from "./cover/Cover.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Wizard",
   components: {
     TopNav,
-    Steps,
-    Cover
+    Steps
   },
   created() {
     window.addEventListener("resize", this.onRisize);
