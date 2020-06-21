@@ -1,9 +1,13 @@
 const state = {
   portrait: false,
+  cover: {
+    advanced: false,
+  }
 }
 
 const getters = {
   wizardPortrait: state => state.portrait,
+  wizardCover: state => state.cover,
 };
 
 const actions = {
@@ -15,11 +19,15 @@ const actions = {
     } else if (this.state.wizard.portrait) {
       commit('wizardUpdatePortrait', false);
     }
+  },
+  wizardUpdateCover({ commit }, update) {
+    commit('wizardUpdateCover', update);
   }
 };
 
 const mutations = {
   wizardUpdatePortrait: (state, bool) => (state.portrait = bool),
+  wizardUpdateCover: (state, update) => (state.cover = Object.assign({}, state.cover, update)),
 };
 
 export default {
