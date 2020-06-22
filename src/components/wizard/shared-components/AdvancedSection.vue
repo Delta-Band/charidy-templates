@@ -19,10 +19,9 @@
         <div class="vertical-spacer" />
       </div>
     </div>
-    <v-btn class="close-btn" text ripple @click="toggleAdvancedMode" v-if="isOpen">
+    <v-btn class="close-btn" text ripple @click="toggleAdvancedMode" :class="{show: isOpen}">
       <v-row align="center" justify="center">
-        <v-icon class="icon" >mdi-close</v-icon>
-        Close
+        <v-icon class="icon">mdi-close</v-icon>Close
       </v-row>
     </v-btn>
   </section>
@@ -51,15 +50,14 @@ export default {
   methods: {
     toggleAdvancedMode() {
       this.$emit("toggle");
-      VueScrollTo.scrollTo('#advanced-content', 500, {
-        container: '#wizard-content',
-        easing: [0.25, 0.46, 0.45, 0.94],
+      VueScrollTo.scrollTo("#advanced-content", 500, {
+        container: "#wizard-content",
+        easing: [0.25, 0.46, 0.45, 0.94]
       });
     },
     onRisize() {
       const $advancedContent = document.getElementById("advanced-content");
       this.advacedSectionHeight = $advancedContent.clientHeight + 1;
-      // this.wizardUpdatePortrait(this.$el.clientWidth);
     }
   }
 };
@@ -69,6 +67,7 @@ export default {
 @import "../shared-styles/index";
 
 .advanced {
+  position: relative;
   
   .advanced-container {
     background-color: $greyLight;
@@ -113,6 +112,19 @@ export default {
   }
 
   .close-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s $ease;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    background: none;
+
+    &.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
     .icon {
       font-size: 20px;
       margin-right: 10px;
