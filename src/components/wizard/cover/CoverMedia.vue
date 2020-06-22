@@ -33,18 +33,23 @@
           </v-responsive>
         </v-tab-item>
       </v-tabs-items>
+      <WizardFieldTip >{{tab === 0 ? 'Image tip...' : 'Video tip...'}}</WizardFieldTip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import WizardFieldTip from "../shared-components/field-tip";
 
 export default {
   name: "CoverMedia",
+  components: {
+    WizardFieldTip,
+  },
   data() {
     return {
-      tab: null,
+      tab: 0,
       items: [
         {
           tab: "Image",

@@ -17,17 +17,23 @@
     >
       <div class="input-title">Title</div>
       <v-text-field height="50" class="text-input"></v-text-field>
+      <WizardFieldTip class="text-input-tip" >Title tip...</WizardFieldTip>
       <div class="input-title">Subtitle</div>
       <v-text-field height="50" class="text-input"></v-text-field>
+      <WizardFieldTip class="text-input-tip" >Subtitle tip...</WizardFieldTip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import WizardFieldTip from "../shared-components/field-tip";
 
 export default {
   name: "CampaignTitle",
+  components: {
+    WizardFieldTip,
+  },
   computed: {
     ...mapGetters(["wizardPortrait"])
   }
@@ -75,5 +81,10 @@ label {
 .text-input {
   @extend .text-input;
   flex-grow: 1;
+}
+
+.text-input-tip {
+  margin-top: -12px;
+  margin-bottom: 32px;
 }
 </style>

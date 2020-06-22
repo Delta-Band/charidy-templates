@@ -2,8 +2,8 @@
   <section class="advanced">
     <div
       class="advanced-container"
-      v-bind:class="isOpen ? 'open' : 'closed'"
-      v-bind:style="{
+      :class="isOpen ? 'open' : 'closed'"
+      :style="{
         'height': `${isOpen > 0 ? advacedSectionHeight : 0}px`,
       }"
     >
@@ -16,7 +16,7 @@
     <v-btn class="advanced-btn" text ripple @click="toggleAdvancedMode">
       <div class="btn-content">
         Advanced Options
-        <v-icon class="icon" v-bind:class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon>
+        <v-icon class="icon" :class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon>
       </div>
     </v-btn>
   </section>
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./shared-styles/index";
+@import "../shared-styles/index";
 
 .advanced {
   .advanced-container {

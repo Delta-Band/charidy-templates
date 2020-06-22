@@ -3,7 +3,7 @@
     <CoverMedia />
     <div class="vertical-spacer" />
     <CampaignTitle />
-    <AdvancedSection v-bind:isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode">
+    <AdvancedSection :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode">
       <template v-slot:1>
         <Countdown />
       </template>
@@ -15,7 +15,7 @@
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
-import AdvancedSection from "../AdvancedSection.vue";
+import AdvancedSection from "../shared-components/AdvancedSection.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

@@ -59,17 +59,17 @@ $ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .text-input {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   margin-top: 0;
 
-  &:last-of-type {
-    margin-bottom: 0px;
-  }
+  // &:last-of-type {
+  //   margin-bottom: 0px;
+  // }
 
   &::v-deep .v-input__slot {
     background-color: rgba(255, 255, 255, 0.5);
-    // border-top-left-radius: 5px;
-    // border-top-right-radius: 5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
 
   &::v-deep input {
