@@ -50,10 +50,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
-  & >>> .v-menu__content {
-    color: red;
-  }
 }
 
 #wizard-content {
@@ -61,11 +57,5 @@ export default {
   overflow: auto;
   flex-grow: 1;
   box-sizing: border-box;
-}
-</style>
-
-<style lang="scss" >
-.v-menu__content {
-  text-align: left;
 }
 </style>
