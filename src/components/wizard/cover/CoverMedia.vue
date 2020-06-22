@@ -4,7 +4,10 @@
         'top': wizardPortrait,
         'left': !wizardPortrait,
         }">
-      <label>Cover Media</label>
+      <label>
+        Cover Media
+        <span class="tag required">Required</span>
+      </label>
       <p>Add an image that clearly represents your project.</p>
       <p>Choose one that looks good at different sizes. It will appear in different sizes in different places: on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.</p>
       <p>You may want to avoid including banners, badges, and text because they may not be legible at smaller sizes.</p>
@@ -33,7 +36,7 @@
           </v-responsive>
         </v-tab-item>
       </v-tabs-items>
-      <WizardFieldTip >{{tab === 0 ? 'Image tip...' : 'Video tip...'}}</WizardFieldTip>
+      <WizardFieldTip>{{tab === 0 ? 'Image tip...' : 'Video tip...'}}</WizardFieldTip>
     </section>
   </div>
 </template>
@@ -45,7 +48,7 @@ import WizardFieldTip from "../shared-components/field-tip";
 export default {
   name: "CoverMedia",
   components: {
-    WizardFieldTip,
+    WizardFieldTip
   },
   data() {
     return {

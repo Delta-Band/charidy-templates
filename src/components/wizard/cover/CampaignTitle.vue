@@ -6,7 +6,10 @@
         'top': wizardPortrait,
         'left': !wizardPortrait,
         }">
-      <label>Campaign Title</label>
+      <label>
+        Campaign Title
+        <span class="tag required">Required</span>
+      </label>
       <p>Write a clear, brief title that helps people quickly understand the gist of your project.</p>
     </section>
     <section
@@ -17,10 +20,10 @@
     >
       <div class="input-title">Title</div>
       <v-text-field height="50" class="text-input"></v-text-field>
-      <WizardFieldTip class="text-input-tip" >Title tip...</WizardFieldTip>
+      <WizardFieldTip class="text-input-tip">Title tip...</WizardFieldTip>
       <div class="input-title">Subtitle</div>
       <v-text-field height="50" class="text-input"></v-text-field>
-      <WizardFieldTip class="text-input-tip" >Subtitle tip...</WizardFieldTip>
+      <WizardFieldTip class="text-input-tip">Subtitle tip...</WizardFieldTip>
     </section>
   </div>
 </template>
@@ -32,7 +35,7 @@ import WizardFieldTip from "../shared-components/field-tip";
 export default {
   name: "CampaignTitle",
   components: {
-    WizardFieldTip,
+    WizardFieldTip
   },
   computed: {
     ...mapGetters(["wizardPortrait"])
