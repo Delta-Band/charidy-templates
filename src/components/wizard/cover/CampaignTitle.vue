@@ -19,10 +19,10 @@
         }"
     >
       <div class="input-title">Title</div>
-      <v-text-field height="50" class="text-input"></v-text-field>
+      <v-text-field height="50" class="text-input" counter></v-text-field>
       <WizardFieldTip class="text-input-tip">Title tip...</WizardFieldTip>
       <div class="input-title">Subtitle</div>
-      <v-text-field height="50" class="text-input"></v-text-field>
+      <v-text-field height="50" class="text-input" counter></v-text-field>
       <WizardFieldTip class="text-input-tip">Subtitle tip...</WizardFieldTip>
     </section>
   </div>
