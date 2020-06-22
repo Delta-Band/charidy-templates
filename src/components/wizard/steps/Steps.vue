@@ -107,9 +107,9 @@ section {
 
 .line {
   width: 100%;
-  height: 1px;
-  background: black;
-  transform: translateY(31px);
+  height: 2px;
+  background: rgb(199, 199, 199);
+  transform: translateY(32px);
 }
 
 .vertical-spacer {
