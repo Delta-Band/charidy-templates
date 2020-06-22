@@ -1,15 +1,15 @@
 <template>
-  <v-btn class="step" text ripple>
+  <v-btn class="step" v-bind:class="{'selected': $router.currentRoute.name === linkTo}" text ripple>
     <router-link :to="{name: linkTo}" class="link">
       <vc-donut
-          :sections="[{
+        :sections="[{
             color: '#000',
             value: completed,
           }]"
-          :size="40"
-          :thickness="20"
-          foreground="rgb(194, 194, 194)"
-        />
+        :size="40"
+        :thickness="20"
+        foreground="rgb(194, 194, 194)"
+      />
       <div class="label">{{title}}</div>
     </router-link>
   </v-btn>
@@ -22,6 +22,15 @@ export default {
     title: String,
     linkTo: String,
     completed: Number
+  },
+  watch: {
+    $route(to) {
+      if (to.name === this.linkTo) {
+        this.$el.classList.add("selected");
+      } else {
+        this.$el.classList.remove("selected");
+      }
+    }
   }
 };
 </script>
@@ -44,6 +53,10 @@ export default {
     padding: 10px 0;
     color: inherit;
     text-decoration: none;
+  }
+
+  &.selected {
+    background-color: rgba(185, 185, 185, 0.35);
   }
 }
 

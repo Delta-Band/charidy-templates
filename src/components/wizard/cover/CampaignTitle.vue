@@ -6,11 +6,11 @@
         'top': wizardPortrait,
         'left': !wizardPortrait,
         }">
-      <label>
+      <div class="label">
         Campaign Title
-        <span class="tag required">Required</span>
-      </label>
+      </div>
       <p>Write a clear, brief title that helps people quickly understand the gist of your project.</p>
+      <span class="tag required">Required</span>
     </section>
     <section
       :class="{
@@ -50,35 +50,6 @@ export default {
   width: 100%;
   display: flex;
   @extend .section;
-
-  &.portrait {
-    flex-direction: column;
-    text-align: left;
-  }
-}
-
-.left {
-  width: 40%;
-  display: inline-flex;
-  flex-direction: column;
-  text-align: left;
-  padding-right: 10%;
-}
-
-.right {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  text-align: left;
-}
-
-.top {
-  margin-bottom: 30px;
-}
-
-label {
-  @extend .label;
 }
 
 .text-input {
@@ -89,5 +60,9 @@ label {
 .text-input-tip {
   margin-top: -12px;
   margin-bottom: 32px;
+}
+
+.tag {
+  @extend .tag;
 }
 </style>

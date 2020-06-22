@@ -1,5 +1,11 @@
 <template>
   <section class="advanced">
+    <v-btn class="advanced-btn" text ripple @click="toggleAdvancedMode">
+      <v-row align="center">
+        Advanced Options
+        <!-- <v-icon class="icon" :class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon> -->
+      </v-row>
+    </v-btn>
     <div
       class="advanced-container"
       :class="isOpen ? 'open' : 'closed'"
@@ -10,14 +16,14 @@
       <div id="advanced-content">
         <div class="vertical-spacer" />
         <slot name="1" />
+        <div class="vertical-spacer" />
       </div>
     </div>
-    <div class="vertical-spacer" />
-    <v-btn class="advanced-btn" text ripple @click="toggleAdvancedMode">
-      <div class="btn-content">
-        Advanced Options
-        <v-icon class="icon" :class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon>
-      </div>
+    <v-btn class="close-btn" text ripple @click="toggleAdvancedMode" v-if="isOpen">
+      <v-row align="center" justify="center">
+        <v-icon class="icon" >mdi-close</v-icon>
+        Close
+      </v-row>
     </v-btn>
   </section>
 </template>
@@ -63,7 +69,9 @@ export default {
 @import "../shared-styles/index";
 
 .advanced {
+  
   .advanced-container {
+    background-color: $greyLight;
     height: 200px;
     overflow: hidden;
     will-change: height opacity;
@@ -78,7 +86,8 @@ export default {
     }
   }
 
-  .advanced-btn {
+  .advanced-btn,
+  .close-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,26 +95,28 @@ export default {
     padding: 30px 20px 20px;
     width: 100%;
     height: auto;
-    margin-top: -30px;
+    // margin-top: -30px;
+    background-color: $greyLight;
 
-    .btn-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+    // .icon {
+    //   transition: 0.25s $ease;
+    //   margin-top: 15px;
+    //   background-color: $yellow;
+    //   color: white;
+    //   border-radius: 40px;
+    //   padding: 7px;
 
+    //   &.open {
+    //     transform: rotate(180deg);
+    //   }
+    // }
+  }
+
+  .close-btn {
     .icon {
-      transition: 0.25s $ease;
-      margin-top: 15px;
-      background-color: $yellow;
-      color: white;
-      border-radius: 40px;
-      padding: 7px;
-
-      &.open {
-        transform: rotate(180deg);
-      }
+      font-size: 20px;
+      margin-right: 10px;
+      transform: translateY(-1px);
     }
   }
 }

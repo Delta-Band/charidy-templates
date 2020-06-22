@@ -4,10 +4,10 @@
         'top': wizardPortrait,
         'left': !wizardPortrait,
         }">
-      <label>
+      <div class="label">
         Countdown Image
-        <span class="tag">Advanced</span>
-      </label>
+        <!-- <span class="tag">Advanced</span> -->
+      </div>
       <p>Lorem Ipsum...</p>
     </section>
     <section
@@ -20,18 +20,23 @@
         <div class="contnent">
           <div>Drop Image</div>
           <div>png / jpg</div>
-          <v-btn class="upload-btn" text ripple rounded>Upload from local hard drive</v-btn>
+          <v-btn class="upload-btn" text ripple rounded outlined>Upload</v-btn>
         </div>
       </v-responsive>
+      <WizardFieldTip>Countdown tip...</WizardFieldTip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import WizardFieldTip from "../shared-components/field-tip";
 
 export default {
   name: "Countdown",
+  components: {
+    WizardFieldTip,
+  },
   computed: {
     ...mapGetters(["wizardPortrait"])
   }
@@ -45,43 +50,6 @@ export default {
   width: 100%;
   display: flex;
   @extend .section;
-
-  &.portrait {
-    flex-direction: column;
-  }
-}
-
-.left {
-  width: 40%;
-  display: inline-flex;
-  flex-direction: column;
-  text-align: left;
-  padding-right: 10%;
-
-  &::v-deep p {
-    margin-bottom: 20px;
-  }
-}
-
-.right {
-  width: 60%;
-}
-
-.top {
-  text-align: left;
-  margin-bottom: 30px;
-}
-
-label {
-  @extend .label;
-  margin-top: 12px;
-}
-
-.tab {
-  .txt {
-    margin-left: 7px;
-    transform: translateY(1px);
-  }
 }
 
 .drop-zone {
@@ -102,14 +70,13 @@ label {
 
     .upload-btn {
       height: 40px;
-      padding: 0 4%;
+      padding: 0 45px;
       text-transform: none;
       font-family: inherit;
       letter-spacing: unset;
       font-size: 16px;
       margin-top: 5%;
-      background-color: $blue;
-      color: white;
+      border: 1px solid $greyDark;
     }
   }
 }

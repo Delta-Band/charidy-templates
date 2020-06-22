@@ -35,30 +35,67 @@ $ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 .section {
   padding: 0 10%;
   box-sizing: border-box;
+  text-align: left;
+
+  &.portrait {
+    flex-direction: column;
+  }
+
+  .left,
+  .top {
+    align-items: flex-start;
+  }
+
+  .left {
+    width: 45%;
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+    padding-right: 10%;
+  }
+
+  .right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .top {
+    margin-bottom: 30px;
+  }
+
+  .right,
+  .bottom {
+    &::v-deep .theme--light.v-tabs-items {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .label {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.label {
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
+.tag {
+  padding: 2px 10px;
+  border: 1px solid $yellow;
+  color: $yellow;
+  // font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  font-weight: 500;
 
-  .tag {
-    padding: 2px 10px;
-    background-color: $yellow;
-    color: white;
-    // font-weight: normal;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 3px;
-    margin-left: 20px;
-    transform: translateY(1px);
-
-    &.required {
-      background-color: $red;
-    }
+  &.required {
+    border: 1px solid $greyDark;
+    color: $greyDark;
   }
 }
 
@@ -82,7 +119,7 @@ $ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .vertical-spacer {
-  height: 10vh;
+  height: 15vh;
   min-height: 106px;
   max-height: 150px;
 

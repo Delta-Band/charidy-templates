@@ -2,7 +2,7 @@
   <div class="top-nav">
     <section class="left">
       <v-btn class="exit btn" text ripple rounded>
-        <v-icon class="icon">mdi-arrow-left</v-icon>Exit
+        <v-icon class="icon">mdi-arrow-left</v-icon>Leave
       </v-btn>
     </section>
     <section class="right">

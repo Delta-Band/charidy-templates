@@ -20,11 +20,11 @@ export default {
   margin-top: 10px;
   display: flex;
   align-items: center;
-  color: $green;
+  color: $greyDark;
 
   .icon {
     margin-right: 10px;
-    color: $green;
+    color: $greyDark;
     font-size: 20px;
   }
 }

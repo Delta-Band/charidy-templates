@@ -3,6 +3,12 @@
     <CoverMedia />
     <div class="vertical-spacer" />
     <CampaignTitle />
+    <v-row justify="end" no-gutters class="next-wrapper">
+      <v-btn class="next-btn" text ripple rounded>
+        Next
+        <v-icon class="icon">mdi-arrow-right</v-icon>
+      </v-btn>
+    </v-row>
     <AdvancedSection :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode">
       <template v-slot:1>
         <Countdown />
@@ -19,12 +25,12 @@ import AdvancedSection from "../shared-components/AdvancedSection.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'Cover',
+  name: "Cover",
   components: {
     CoverMedia,
     CampaignTitle,
     Countdown,
-    AdvancedSection,
+    AdvancedSection
   },
   data: () => ({
     advacedSectionHeight: 0
@@ -36,7 +42,7 @@ export default {
     ...mapActions(["wizardUpdatePortrait", "wizardUpdateCover"]),
     toggleAdvancedMode() {
       this.wizardUpdateCover({ advanced: !this.wizardCover.advanced });
-    },
+    }
   }
 };
 </script>
@@ -66,6 +72,20 @@ export default {
       transition: 0.5s $ease, opacity 0.5s $ease 0.25s;
       opacity: 1;
     }
+  }
+
+  .next-btn {
+    padding: 2px 16px 0;
+    .icon {
+      margin-left: 10px;
+      font-size: 20px;
+    }
+  }
+
+  .next-wrapper {
+    padding: 0 10%;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 </style>
