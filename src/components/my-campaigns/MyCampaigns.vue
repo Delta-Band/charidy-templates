@@ -2,15 +2,24 @@
   <v-app>
     <div id="my-campaigns">
       <section>
-        <div class="vertical-spacer"/>
+        <div class="vertical-spacer" />
         <h1>My Campaigns</h1>
+        <v-btn class="create btn" ripple rounded @click="createNewCampaign">
+          <v-icon class="icon">mdi-plus</v-icon>New Campaign
+        </v-btn>
+        <ul>
+          <li
+            v-for="(campaign, index) in myCampaignsList"
+            v-bind:key="campaign.id"
+          >{{index}} {{campaign.name}}</li>
+        </ul>
       </section>
     </div>
   </v-app>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "MyCampaigns",
@@ -30,15 +39,19 @@ export default {
       "myCampaignsAddNewCampaign",
       "myCampaignsRemoveCampaign"
     ]),
+    ...mapGetters(["myCampaignsPortrait", "myCampaignsList"]),
     onRisize() {
       this.myCampaignsUpdatePortrait(this.$el.clientWidth);
+    },
+    createNewCampaign() {
+      console.log('create new campaign');
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../shared-styles/index";
+@import "@/shared-styles/index";
 
 #my-campaigns {
   width: 100%;

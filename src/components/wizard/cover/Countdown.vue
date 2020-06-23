@@ -30,7 +30,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import WizardFieldTip from "../shared-components/field-tip";
+import WizardFieldTip from "@/shared-components/FieldTip";
 
 export default {
   name: "Countdown",
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../shared-styles/index";
+@import '@/shared-styles/index';
 
 #countdown {
   width: 100%;

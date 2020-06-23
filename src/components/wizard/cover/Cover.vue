@@ -21,7 +21,7 @@
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
-import AdvancedSection from "../shared-components/AdvancedSection.vue";
+import AdvancedSection from "@/shared-components/AdvancedSection.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../shared-styles/index";
+@import '@/shared-styles/index';
 
 .cover-page {
   .vertical-spacer {
