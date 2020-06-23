@@ -8,15 +8,21 @@
 
       <div class="steps" v-if="!wizardPortrait">
         <template v-for="step in steps">
-          <Step v-bind:completed="step.completed" v-bind:title="step.txt" :key="step.txt" v-bind:linkTo="step.linkTo" />
+          <Step
+            v-bind:completed="step.completed"
+            v-bind:title="step.txt"
+            :key="step.txt"
+            v-bind:linkTo="step.linkTo"
+          />
         </template>
       </div>
-      <v-select v-else :items="steps" item-text="txt" label="Step" solo v-bind:value="currentStep">
+      <v-select v-else :items="steps" solo v-model="currentStep" @change="onChangeHandler" item-value="linkTo" item-text="txt">
         <template v-slot:item="{item}">
           <StepAsMenuItem
             v-bind:title="item.txt"
             v-bind:completed="item.completed"
-            v-bind:selected="currentStep === item.txt"
+            v-bind:selected="$router.currentRoute.name === item.linkTo"
+            v-bind:linkTo="item.linkTo"
           />
         </template>
         <template v-slot:selection="{item}">
@@ -42,55 +48,64 @@ export default {
     StepAsMenuItem
   },
   data() {
-    return {
-      steps: [
+    const steps = [
         {
           txt: "Cover",
           completed: 50,
-          linkTo: 'wizard-cover',
+          linkTo: "wizard-cover"
         },
         {
           txt: "Goal & Time",
           completed: 25,
-          linkTo: 'wizard-goal-and-time',
+          linkTo: "wizard-goal-and-time"
         },
         {
           txt: "Story",
           completed: 10,
-          linkTo: 'wizard-story',
+          linkTo: "wizard-story"
         },
         {
           txt: "Levels",
           completed: 0,
-          linkTo: 'wizard-levels',
+          linkTo: "wizard-levels"
         },
         {
           txt: "Teams",
           completed: 0,
-          linkTo: 'wizard-teams',
+          linkTo: "wizard-teams"
         },
         {
           txt: "Matchers",
           completed: 75,
-          linkTo: 'wizard-matchers',
+          linkTo: "wizard-matchers"
         },
         {
           txt: "Customize",
           completed: 0,
-          linkTo: 'wizard-customize',
+          linkTo: "wizard-customize"
         }
-      ],
-      currentStep: "Cover"
+      ];
+    return {
+      steps,
+      currentStep: steps[0].linkTo,
     };
+  },
+  created() {
+    this.currentStep = this.steps.find(step => step.linkTo === this.$router.currentRoute.name).linkTo;
   },
   computed: {
     ...mapGetters(["wizardPortrait"])
-  }
+  },
+  methods: {
+    onChangeHandler() {
+      this.$router.push({ name: this.currentStep});
+    }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../shared-styles/index";
+@import "../../shared-styles/index";
 
 section {
   width: 100%;

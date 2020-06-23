@@ -1,7 +1,7 @@
 <template>
   <div class="top-nav">
     <section class="left">
-      <v-btn class="exit btn" text ripple rounded>
+      <v-btn class="exit btn" text ripple rounded @click="exitWizard">
         <v-icon class="icon">mdi-arrow-left</v-icon>Leave
       </v-btn>
     </section>
@@ -16,12 +16,17 @@
 
 <script>
 export default {
-  name: "TopNav"
+  name: "TopNav",
+  methods: {
+    exitWizard() {
+      this.$router.push({ name: 'my-campaignes'});
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "./shared-styles/index";
+@import "../shared-styles/index";
 
 .top-nav {
   width: 100%;

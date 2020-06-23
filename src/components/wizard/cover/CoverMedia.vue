@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../shared-styles/index";
+@import "../../shared-styles/index";
 
 .cover-media {
   width: 100%;

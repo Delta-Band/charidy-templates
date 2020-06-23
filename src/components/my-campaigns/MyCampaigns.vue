@@ -1,26 +1,20 @@
 <template>
   <v-app>
-    <div id="wizard">
-      <TopNav />
-      <div id="wizard-content">
-        <Steps />
-        <router-view />
-      </div>
+    <div id="my-campaigns">
+      <section>
+        <div class="vertical-spacer"/>
+        <h1>My Campaigns</h1>
+      </section>
     </div>
   </v-app>
 </template>
 
 <script>
-import TopNav from "./TopNav.vue";
-import Steps from "./steps/Steps.vue";
 import { mapActions } from "vuex";
 
 export default {
-  name: "Wizard",
-  components: {
-    TopNav,
-    Steps
-  },
+  name: "MyCampaigns",
+  components: {},
   created() {
     window.addEventListener("resize", this.onRisize);
   },
@@ -28,12 +22,16 @@ export default {
     window.removeEventListener("resize", this.onRisize);
   },
   mounted() {
-    this.wizardUpdatePortrait(this.$el.clientWidth);
+    this.myCampaignsUpdatePortrait(this.$el.clientWidth);
   },
   methods: {
-    ...mapActions(["wizardUpdatePortrait"]),
+    ...mapActions([
+      "myCampaignsUpdatePortrait",
+      "myCampaignsAddNewCampaign",
+      "myCampaignsRemoveCampaign"
+    ]),
     onRisize() {
-      this.wizardUpdatePortrait(this.$el.clientWidth);
+      this.myCampaignsUpdatePortrait(this.$el.clientWidth);
     }
   }
 };
@@ -42,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 @import "../shared-styles/index";
 
-#wizard {
+#my-campaigns {
   width: 100%;
   height: 100%;
   background-color: rgb(238, 238, 238);
@@ -52,10 +50,11 @@ export default {
   align-items: stretch;
 }
 
-#wizard-content {
-  width: 100%;
-  overflow: auto;
-  flex-grow: 1;
-  box-sizing: border-box;
+section {
+  @extend .section;
+}
+
+.vertical-spacer {
+  @extend .vertical-spacer;
 }
 </style>

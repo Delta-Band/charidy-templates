@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../shared-styles/index.scss';
+@import '../../shared-styles/index.scss';
 
 .wizard-field-tip {
   width: 100%;
