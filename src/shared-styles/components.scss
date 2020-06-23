@@ -36,6 +36,8 @@ $ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 0 10%;
   box-sizing: border-box;
   text-align: left;
+  display: flex;
+  width: 100%;
 
   &.portrait {
     flex-direction: column;

@@ -20,22 +20,22 @@
     >
       <div class="input-title">Title</div>
       <v-text-field height="50" class="text-input" counter color="#000"></v-text-field>
-      <WizardFieldTip class="text-input-tip">Title tip...</WizardFieldTip>
+      <FieldTip class="text-input-tip">Title tip...</FieldTip>
       <div class="input-title">Subtitle</div>
       <v-text-field height="50" class="text-input" counter color="#000"></v-text-field>
-      <WizardFieldTip class="text-input-tip">Subtitle tip...</WizardFieldTip>
+      <FieldTip class="text-input-tip">Subtitle tip...</FieldTip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import WizardFieldTip from "@/shared-components/FieldTip";
+import FieldTip from "@/shared-components/FieldTip";
 
 export default {
   name: "CampaignTitle",
   components: {
-    WizardFieldTip
+    FieldTip
   },
   computed: {
     ...mapGetters(["wizardPortrait"])

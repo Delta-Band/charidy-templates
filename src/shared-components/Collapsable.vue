@@ -1,25 +1,31 @@
 <template>
-  <section class="advanced">
-    <v-btn class="advanced-btn" text ripple @click="toggleAdvancedMode">
-      <v-row align="center">
-        Advanced Options
+  <section class="collapsable">
+    <v-btn class="collapsable-btn" text ripple @click="toggleAdvancedMode">
+      <v-row align="center" justify="center">
+        <slot name="title" />
         <!-- <v-icon class="icon" :class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon> -->
       </v-row>
     </v-btn>
     <div
-      class="advanced-container"
+      class="collapsable-container"
       :class="isOpen ? 'open' : 'closed'"
       :style="{
-        'height': `${isOpen > 0 ? advacedSectionHeight : 0}px`,
+        height: `${isOpen > 0 ? advacedSectionHeight : 0}px`,
       }"
     >
-      <div id="advanced-content">
-        <div class="vertical-spacer" />
-        <slot name="1" />
+      <div id="collapsable-content">
+        <div class="vertical-spacer-top" />
+        <slot name="content" />
         <div class="vertical-spacer" />
       </div>
     </div>
-    <v-btn class="close-btn" text ripple @click="toggleAdvancedMode" :class="{show: isOpen}">
+    <v-btn
+      class="close-btn"
+      text
+      ripple
+      @click="toggleAdvancedMode"
+      :class="{ show: isOpen }"
+    >
       <v-row align="center" justify="center">
         <v-icon class="icon">mdi-close</v-icon>Close
       </v-row>
@@ -28,74 +34,84 @@
 </template>
 
 <script>
-import VueScrollTo from "vue-scrollto";
+import VueScrollTo from 'vue-scrollto';
 
 export default {
-  name: "AdvancedSection",
+  name: 'Collapsable',
   props: {
-    isOpen: Boolean
+    isOpen: Boolean,
+    title: String,
+    container: String,
   },
   data: () => ({
-    advacedSectionHeight: 0
+    advacedSectionHeight: 0,
   }),
   created() {
-    window.addEventListener("resize", this.onRisize);
+    window.addEventListener('resize', this.onRisize);
   },
   destroyed() {
-    window.removeEventListener("resize", this.onRisize);
+    window.removeEventListener('resize', this.onRisize);
   },
   mounted() {
     this.onRisize();
   },
   methods: {
     toggleAdvancedMode() {
-      this.$emit("toggle");
-      VueScrollTo.scrollTo("#advanced-content", 500, {
-        container: "#wizard-content",
-        easing: [0.25, 0.46, 0.45, 0.94]
+      this.$emit('toggle');
+      VueScrollTo.scrollTo('#collapsable-content', 500, {
+        container: this.container,
+        easing: [0.25, 0.46, 0.45, 0.94],
       });
     },
     onRisize() {
-      const $advancedContent = document.getElementById("advanced-content");
-      this.advacedSectionHeight = $advancedContent.clientHeight + 1;
-    }
-  }
+      const $collapsableContent = document.getElementById('collapsable-content');
+      this.advacedSectionHeight = $collapsableContent.clientHeight + 1;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
-.advanced {
+.collapsable {
   position: relative;
-  
-  .advanced-container {
+  width: 100%;
+
+  .collapsable-container {
     background-color: $greyLight;
     height: 200px;
     overflow: hidden;
     will-change: height opacity;
     transition: 0.5s $ease;
-    transform: scale(0.7);
-    opacity: 0;
 
     &.open {
-      transition: 0.5s $ease, opacity 0.5s $ease 0.25s;
-      opacity: 1;
-      transform: scale(1);
+      #collapsable-content {
+        transition: 0.5s $ease, opacity 0.5s $ease 0.25s;
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #collapsable-content {
+      transition: 0.5s $ease;
+      transform: scale(0.7);
+      opacity: 0;
     }
   }
 
-  .advanced-btn,
+  .collapsable-btn,
   .close-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px 20px;
+    padding: 30px 20px 26px;
     width: 100%;
     height: auto;
     // margin-top: -30px;
     background-color: $greyLight;
+    border-radius: 0;
 
     // .icon {
     //   transition: 0.25s $ease;

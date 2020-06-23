@@ -23,19 +23,19 @@
           <v-btn class="upload-btn" text ripple rounded outlined>Upload</v-btn>
         </div>
       </v-responsive>
-      <WizardFieldTip>Countdown tip...</WizardFieldTip>
+      <FieldTip>Countdown tip...</FieldTip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import WizardFieldTip from "@/shared-components/FieldTip";
+import FieldTip from "@/shared-components/FieldTip";
 
 export default {
   name: "Countdown",
   components: {
-    WizardFieldTip,
+    FieldTip,
   },
   computed: {
     ...mapGetters(["wizardPortrait"])

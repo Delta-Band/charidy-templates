@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "WizardFieldTip",
+  name: "FieldTip",
 };
 </script>
 

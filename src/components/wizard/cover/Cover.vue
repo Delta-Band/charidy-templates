@@ -9,11 +9,14 @@
         <v-icon class="icon">mdi-arrow-right</v-icon>
       </v-btn>
     </v-row>
-    <AdvancedSection :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode">
-      <template v-slot:1>
+    <Collapsable :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
+      <template v-slot:title>Advanced Options</template>
+      <template v-slot:content>
+        <div class="vertical-spacer" />
         <Countdown />
+        <div class="vertical-spacer" />
       </template>
-    </AdvancedSection>
+    </Collapsable>
   </div>
 </template>
 
@@ -21,7 +24,7 @@
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
-import AdvancedSection from "@/shared-components/AdvancedSection.vue";
+import Collapsable from "@/shared-components/Collapsable.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -30,7 +33,7 @@ export default {
     CoverMedia,
     CampaignTitle,
     Countdown,
-    AdvancedSection
+    Collapsable
   },
   data: () => ({
     advacedSectionHeight: 0

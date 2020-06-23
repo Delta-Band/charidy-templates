@@ -1,11 +1,13 @@
 const state = {
   portrait: false,
   campaignsList: [],
+  isNewCampaignOpen: false,
 }
 
 const getters = {
   myCampaignsPortrait: state => state.portrait,
   myCampaignsList: state => state.campaignsList,
+  isNewCampaignOpen: state => state.isNewCampaignOpen,
 };
 
 const actions = {
@@ -24,6 +26,9 @@ const actions = {
   myCampaignsRemoveCampaign({ commit }, campaignId) {
     commit('myCampaignsRemoveCampaign', campaignId);
   },
+  myCampaignsToggleNewSection({ commit }) {
+    commit('myCampaignsToggleNewSection');
+  },
 };
 
 const mutations = {
@@ -35,6 +40,9 @@ const mutations = {
   },
   myCampaignsRemoveCampaign: (state, campaignId) => {
     state.campaignsList = state.campaignsList.filter(cmp => cmp.id !== campaignId);
+  },
+  myCampaignsToggleNewSection: state => {
+    state.isNewCampaignOpen = !state.isNewCampaignOpen;
   },
 };
 

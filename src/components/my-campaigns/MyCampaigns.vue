@@ -1,57 +1,145 @@
 <template>
   <v-app>
     <div id="my-campaigns">
-      <section>
-        <div class="vertical-spacer" />
+      <div class="vertical-spacer" />
+      <section class="section">
         <h1>My Campaigns</h1>
-        <v-btn class="create btn" ripple rounded @click="createNewCampaign">
+        <!-- <v-btn class="create btn" ripple rounded @click="createNewCampaign">
           <v-icon class="icon">mdi-plus</v-icon>New Campaign
-        </v-btn>
-        <ul>
-          <li
-            v-for="(campaign, index) in myCampaignsList"
-            v-bind:key="campaign.id"
-          >{{index}} {{campaign.name}}</li>
-        </ul>
+        </v-btn>-->
       </section>
+      <section class="section">
+        <Collapsable
+          :isOpen="isNewCampaignOpen"
+          @toggle="toggleNewCampaignMode"
+          container="#my-campaigns"
+        >
+          <template v-slot:title>
+            <v-icon class="icon">mdi-plus</v-icon>
+            New Campaign
+          </template>
+          <template v-slot:content>
+            <section class="section add-campaign-section">
+              <div
+                :class="{
+                  top: myCampaignsPortrait,
+                  left: !myCampaignsPortrait,
+                }"
+              >
+                <div class="label">
+                  Campaign Name
+                </div>
+                <p>
+                  Internal name
+                </p>
+              </div>
+              <div
+                :class="{
+                  bottom: myCampaignsPortrait,
+                  right: !myCampaignsPortrait,
+                }"
+              >
+                <div class="input-title">Title</div>
+                <v-text-field
+                  height="50"
+                  class="text-input"
+                  counter
+                  color="#000"
+                ></v-text-field>
+              </div>
+            </section>
+            <div class="vertical-spacer" />
+            <section class="section add-campaign-section">
+              <div
+                :class="{
+                  top: myCampaignsPortrait,
+                  left: !myCampaignsPortrait,
+                }"
+              >
+                <div class="label">
+                  How would you like to fundrais?
+                </div>
+                <p>
+                  Select one option
+                </p>
+              </div>
+              <div
+                :class="{
+                  bottom: myCampaignsPortrait,
+                  right: !myCampaignsPortrait,
+                }"
+              >
+                <div class="input-title">Title</div>
+                <v-text-field
+                  height="50"
+                  class="text-input"
+                  counter
+                  color="#000"
+                ></v-text-field>
+              </div>
+            </section>
+          </template>
+        </Collapsable>
+      </section>
+      <ul>
+        <li
+          v-for="(campaign, index) in myCampaignsList"
+          v-bind:key="campaign.id"
+        >
+          {{ index }} {{ campaign.name }}
+        </li>
+      </ul>
     </div>
   </v-app>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
+import Collapsable from '@/shared-components/Collapsable.vue';
 
 export default {
-  name: "MyCampaigns",
-  components: {},
+  name: 'MyCampaigns',
+  components: {
+    Collapsable,
+  },
   created() {
-    window.addEventListener("resize", this.onRisize);
+    window.addEventListener('resize', this.onRisize);
   },
   destroyed() {
-    window.removeEventListener("resize", this.onRisize);
+    window.removeEventListener('resize', this.onRisize);
   },
   mounted() {
     this.myCampaignsUpdatePortrait(this.$el.clientWidth);
   },
+  computed: {
+    ...mapGetters([
+      'myCampaignsPortrait',
+      'myCampaignsList',
+      'isNewCampaignOpen',
+    ]),
+  },
   methods: {
     ...mapActions([
-      "myCampaignsUpdatePortrait",
-      "myCampaignsAddNewCampaign",
-      "myCampaignsRemoveCampaign"
+      'myCampaignsUpdatePortrait',
+      'myCampaignsAddNewCampaign',
+      'myCampaignsRemoveCampaign',
+      'myCampaignsToggleNewSection',
     ]),
-    ...mapGetters(["myCampaignsPortrait", "myCampaignsList"]),
     onRisize() {
       this.myCampaignsUpdatePortrait(this.$el.clientWidth);
     },
     createNewCampaign() {
       console.log('create new campaign');
-    }
-  }
+    },
+    toggleNewCampaignMode() {
+      this.myCampaignsToggleNewSection();
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/shared-styles/index";
+@import '@/shared-styles/index';
 
 #my-campaigns {
   width: 100%;
@@ -63,11 +151,24 @@ export default {
   align-items: stretch;
 }
 
-section {
+.section {
   @extend .section;
 }
 
 .vertical-spacer {
   @extend .vertical-spacer;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.add-campaign-section {
+  padding: 0 5%;
 }
 </style>
