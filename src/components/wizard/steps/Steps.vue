@@ -19,36 +19,39 @@
         </template>
       </div>
     </div>
-    <v-select
-      v-else
-      :items="steps"
-      solo
-      v-model="currentStep"
-      @change="onChangeHandler"
-      item-value="linkTo"
-      item-text="txt"
-    >
-      <template v-slot:item="{ item }">
-        <StepAsMenuItem
-          v-bind:title="item.txt"
-          v-bind:completed="item.completed"
-          v-bind:selected="$router.currentRoute.name === item.linkTo"
-          v-bind:linkTo="item.linkTo"
-        />
-      </template>
-      <template v-slot:selection="{ item }">
-        <StepAsMenuItem
-          v-bind:title="item.txt"
-          v-bind:completed="item.completed"
-          selected
-        />
-      </template>
-    </v-select>
+    <div v-else class="steps-section">
+      <v-select
+        :items="steps"
+        solo
+        v-model="currentStep"
+        @change="onChangeHandler"
+        item-value="linkTo"
+        item-text="txt"
+      >
+        <template v-slot:item="{ item }">
+          <StepAsMenuItem
+            v-bind:title="item.txt"
+            v-bind:completed="item.completed"
+            v-bind:selected="$router.currentRoute.name === item.linkTo"
+            v-bind:linkTo="item.linkTo"
+          />
+        </template>
+        <template v-slot:selection="{ item }">
+          <StepAsMenuItem
+            v-bind:title="item.txt"
+            v-bind:completed="item.completed"
+            selected
+          />
+        </template>
+      </v-select>
+    </div>
     <div
+      v-if="!wizardPortrait"
       class="vertical-spacer"
-      :class="{
-        portrait: wizardPortrait,
-      }"
+    />
+    <div
+      v-else
+      class="sub-steps-mobile-spacer"
     />
   </div>
 </template>
@@ -152,5 +155,10 @@ export default {
 
 .vertical-spacer-top {
   @extend .vertical-spacer-top;
+}
+
+.sub-steps-mobile-spacer {
+  height: 5vh;
+  max-height: 60px;
 }
 </style>

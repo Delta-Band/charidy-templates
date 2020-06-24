@@ -56,7 +56,6 @@
           v-model="type"
           mandatory
           name="campaign-type"
-          @change="onChangeCampaignTypeHandler"
           class="campaign-types"
         >
           <v-radio
@@ -108,25 +107,23 @@ export default {
       ],
     };
   },
+  destroyed() {
+    this.myCampaignsCloseNewSection();
+  },
   computed: {
     ...mapGetters(['myCampaignsPortrait', 'campaignTypes']),
   },
   methods: {
-    ...mapActions(['myCampaignsAddNewCampaign', 'myCampaignsToggleNewSection']),
+    ...mapActions(['myCampaignsAddNewCampaign', 'myCampaignsToggleNewSection', 'myCampaignsCloseNewSection']),
     createNewCampaign() {
-      this.myCampaignsAddNewCampaign({
+      const that = this;
+      const promise = this.myCampaignsAddNewCampaign({
         name: this.name,
         type: this.type,
       });
-      this.myCampaignsToggleNewSection();
-      setTimeout(() => {
-        this.type = null;
-        this.name = null;
-        this.valid = false;
-      }, 1000);
-    },
-    onChangeCampaignTypeHandler(item) {
-      console.log(item);
+      promise.then(campaignId => {
+        that.$router.push({ name: 'wizard-cover', params: { campaignId } });
+      });
     },
   },
 };

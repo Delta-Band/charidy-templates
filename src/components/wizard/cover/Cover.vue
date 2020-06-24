@@ -44,6 +44,9 @@ export default {
     ...mapActions(["wizardUpdatePortrait", "wizardUpdateCover"]),
     toggleAdvancedMode() {
       this.advanced = !this.advanced;
+    },
+    details() {
+      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     }
   }
 };

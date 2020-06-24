@@ -2,25 +2,38 @@
   <div class="top-nav">
     <section class="left">
       <v-btn class="exit btn" text ripple rounded @click="exitWizard">
-        <v-icon class="icon">mdi-arrow-left</v-icon>Leave
+        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-arrow-left</v-icon>
+        <span v-if="!wizardPortrait">Leave</span>
       </v-btn>
+    </section>
+    <section class="center">
+      <h3>{{details ? details.name : 'Campaign not found!'}}</h3>
     </section>
     <section class="right">
       <v-btn class="preview btn" text ripple rounded>
-        <v-icon class="icon">mdi-eye-outline</v-icon>Preview
+        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-eye-outline</v-icon>
+        <span v-if="!wizardPortrait">Preview</span>
       </v-btn>
     </section>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TopNav",
   methods: {
     exitWizard() {
       this.$router.push({ name: 'my-campaignes'});
     }
-  }
+  },
+  computed: {
+    ...mapGetters(["wizardPortrait", "campaignDetails"]),
+    details() {
+      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
+    }
+  },
 };
 </script>
 
@@ -35,7 +48,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 11px 40px 10px 20px;
+  padding: 11px 20px 10px;
   box-sizing: border-box;
 
   .btn {
@@ -51,6 +64,10 @@ export default {
       margin-right: 10px;
       font-size: 22px;
       transform: translateY(-0.5px);
+
+      &.center-me {
+        margin-right: 0;
+      }
     }
 
     &.save {

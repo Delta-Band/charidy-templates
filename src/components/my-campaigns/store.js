@@ -1,4 +1,5 @@
 import md5 from 'md5';
+// import Router from 'vue-router';
 
 const state = {
   portrait: false,
@@ -31,10 +32,11 @@ const getters = {
   myCampaignsList: (state) => state.campaignsList,
   campaignTypes: (state) => state.campaignTypes,
   isNewCampaignOpen: (state) => state.isNewCampaignOpen,
-  campaignDetails: state => { 
-    // eslint-disable-next-line no-debugger
-    debugger;
-    return state;
+  campaignDetails: state => id => { 
+    if (id) {
+      return state.campaignsList.find(itm => itm.id === id);
+    }
+    return null;
   }
 };
 
@@ -48,8 +50,31 @@ const actions = {
       commit('myCampaignsUpdatePortrait', false);
     }
   },
-  myCampaignsAddNewCampaign({ commit }, newCampaign) {
-    commit('myCampaignsAddNewCampaign', newCampaign);
+  myCampaignsAddNewCampaign({ commit }, { name, type }) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const id = md5(`${name}-${type}`);
+        commit('myCampaignsAddNewCampaign', {
+          id,
+          name,
+          type,
+          cover: {
+            image: null,
+            video: null,
+            title: null,
+            subtitle: null,
+            countdownImage: null,
+          },
+          goalTime: {},
+          story: {},
+          levels: {},
+          team: {},
+          matchers: {},
+          customize: {},
+        });
+        resolve(id);
+      }, 500);
+    });
   },
   myCampaignsRemoveCampaign({ commit }, campaignId) {
     commit('myCampaignsRemoveCampaign', campaignId);
@@ -57,32 +82,17 @@ const actions = {
   myCampaignsToggleNewSection({ commit }) {
     commit('myCampaignsToggleNewSection');
   },
+  myCampaignsCloseNewSection({ commit }) {
+    commit('myCampaignsCloseNewSection');
+  },
 };
 
 const mutations = {
   myCampaignsUpdatePortrait: (state, bool) => {
     state.portrait = bool;
   },
-  myCampaignsAddNewCampaign: (state, { name, type }) => {
-    const id = md5(`${name}-${type}`);
-    state.campaignsList.push({
-      id,
-      name,
-      type,
-      cover: {
-        image: null,
-        video: null,
-        title: null,
-        subtitle: null,
-        countdownImage: null,
-      },
-      goalTime: {},
-      story: {},
-      levels: {},
-      team: {},
-      matchers: {},
-      customize: {},
-    });
+  myCampaignsAddNewCampaign: (state, newCampaign) => {
+    state.campaignsList.push(newCampaign);
   },
   myCampaignsRemoveCampaign: (state, campaignId) => {
     state.campaignsList = state.campaignsList.filter(
@@ -91,6 +101,9 @@ const mutations = {
   },
   myCampaignsToggleNewSection: (state) => {
     state.isNewCampaignOpen = !state.isNewCampaignOpen;
+  },
+  myCampaignsCloseNewSection: (state) => {
+    state.isNewCampaignOpen = false;
   },
 };
 
