@@ -22,7 +22,7 @@
       </v-toolbar>
       <v-row no-gutters v-bind:key="campaign.id" class="summary">
         <v-col align="start">
-          Completion State... / Stats...
+          Completion State... / Live Stats...
         </v-col>
       </v-row>
     </v-col>
@@ -52,7 +52,7 @@ export default {
 @import '@/shared-styles/index';
 
 .campaign-list-item {
-  border: 1px solid black;
+  border: 1px solid $greyDark;
   background: $white50alpha;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -74,7 +74,7 @@ export default {
   }
 
   .tool-bar {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $greyDark;
   }
 
   .summary {
