@@ -9,11 +9,12 @@
         <v-icon class="icon">mdi-arrow-right</v-icon>
       </v-btn>
     </v-row>
-    <AdvancedSection :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode">
-      <template v-slot:1>
+    <Collapsable :isOpen="advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
+      <template v-slot:title>Advanced Options</template>
+      <template v-slot:content>
         <Countdown />
       </template>
-    </AdvancedSection>
+    </Collapsable>
   </div>
 </template>
 
@@ -21,7 +22,7 @@
 import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
-import AdvancedSection from "../shared-components/AdvancedSection.vue";
+import Collapsable from "@/shared-components/Collapsable.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -30,25 +31,29 @@ export default {
     CoverMedia,
     CampaignTitle,
     Countdown,
-    AdvancedSection
+    Collapsable
   },
   data: () => ({
-    advacedSectionHeight: 0
+    advacedSectionHeight: 0,
+    advanced: false,
   }),
   computed: {
-    ...mapGetters(["wizardPortrait", "wizardCover"])
+    ...mapGetters(["wizardPortrait", "campaignDetails"])
   },
   methods: {
     ...mapActions(["wizardUpdatePortrait", "wizardUpdateCover"]),
     toggleAdvancedMode() {
-      this.wizardUpdateCover({ advanced: !this.wizardCover.advanced });
+      this.advanced = !this.advanced;
+    },
+    details() {
+      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../shared-styles/index";
+@import '@/shared-styles/index';
 
 .cover-page {
   .vertical-spacer {

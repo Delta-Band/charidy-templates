@@ -8,19 +8,29 @@ import Levels from '@/components/wizard/levels/Levels';
 import Teams from '@/components/wizard/teams/Teams';
 import Matchers from '@/components/wizard/matchers/Matchers';
 import Customize from '@/components/wizard/customize/Customize';
+import MyCampaigns from '@/components/my-campaigns/MyCampaigns';
 
 Vue.use(Router);
+/* 
+TODO:
+MOVE WIZARD ROUTES TO BY SUBROUTES OF MY-CAMPAIGN
+ */
 
 export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/wizard',
+      path: '/my-campaignes',
+      name: 'my-campaignes',
+      component: MyCampaigns,
+    },
+    {
+      path: '/:campaignId/wizard',
       name: 'wizard',
       component: Wizard,
       children: [
         {
-          path: '',
+          path: 'cover',
           name: 'wizard-cover',
           component: Cover,
         },
@@ -58,7 +68,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/wizard',
+      redirect: '/my-campaignes',
     },
   ],
 });
