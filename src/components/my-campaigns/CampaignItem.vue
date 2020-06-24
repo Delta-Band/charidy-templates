@@ -22,7 +22,7 @@
       </v-toolbar>
       <v-row no-gutters v-bind:key="campaign.id" class="summary">
         <v-col align="start">
-          Completion State... / Live Stats...
+          <CompletionOverview :campaign="campaign"/>
         </v-col>
       </v-row>
     </v-col>
@@ -31,9 +31,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import CompletionOverview from './CompletionOverview';
 
 export default {
   name: 'CampaignItem',
+  components: {
+    CompletionOverview,
+  },
   props: {
     campaign: Object,
   },
@@ -85,7 +89,7 @@ export default {
   }
 
   .summary {
-    padding: 20px;
+    padding: 50px 30px;
   }
 }
 </style>
