@@ -213,6 +213,12 @@ export default {
 .campaign-list {
   flex-grow: 0;
   padding: 0 10%;
+
+  @for $i from 1 through 6 {
+    :nth-child(#{$i}) {
+      animation-delay: ($i - 1) * 0.12s;
+    }
+  }
 }
 
 .chip {

@@ -8,7 +8,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
 
-        <v-btn icon>
+        <v-btn icon @click="goToWizard">
           <v-icon size="21px">mdi-pencil</v-icon>
         </v-btn>
 
@@ -44,6 +44,12 @@ export default {
     getReadableType(type) {
       return this.campaignTypes.find((itm) => itm.value === type).label;
     },
+    goToWizard() {
+      this.$router.push({
+        name: 'wizard-cover',
+        params: { campaignId: this.campaign.id },
+      });
+    },
   },
 };
 </script>
@@ -59,6 +65,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   flex-shrink: 0;
+  opacity: 0;
   @extend .popIn;
   overflow: hidden;
 

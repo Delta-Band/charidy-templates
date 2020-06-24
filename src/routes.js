@@ -25,12 +25,12 @@ export default new Router({
       component: MyCampaigns,
     },
     {
-      path: '/wizard',
+      path: '/:campaignId/wizard',
       name: 'wizard',
       component: Wizard,
       children: [
         {
-          path: '',
+          path: 'cover',
           name: 'wizard-cover',
           component: Cover,
         },

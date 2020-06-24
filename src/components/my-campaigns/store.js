@@ -31,6 +31,11 @@ const getters = {
   myCampaignsList: (state) => state.campaignsList,
   campaignTypes: (state) => state.campaignTypes,
   isNewCampaignOpen: (state) => state.isNewCampaignOpen,
+  campaignDetails: state => { 
+    // eslint-disable-next-line no-debugger
+    debugger;
+    return state;
+  }
 };
 
 const actions = {
@@ -64,6 +69,19 @@ const mutations = {
       id,
       name,
       type,
+      cover: {
+        image: null,
+        video: null,
+        title: null,
+        subtitle: null,
+        countdownImage: null,
+      },
+      goalTime: {},
+      story: {},
+      levels: {},
+      team: {},
+      matchers: {},
+      customize: {},
     });
   },
   myCampaignsRemoveCampaign: (state, campaignId) => {

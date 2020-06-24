@@ -62,7 +62,7 @@ export default {
 
 .label {
   margin-top: 7px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
 }

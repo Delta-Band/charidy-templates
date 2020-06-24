@@ -1,30 +1,16 @@
 const state = {
   portrait: false,
-  cover: {
-    advanced: false,
-    image: null,
-    video: null,
-    title: null,
-    subtitle: null,
-    countdownImage: null,
-  },
-  goalTime: {},
-  story: {},
-  levels: {},
-  team: {},
-  matchers: {},
-  customize: {},
 }
 
 const getters = {
   wizardPortrait: state => state.portrait,
-  wizardCover: state => state.cover,
-  wizardGoalTime: state => state.goalTime,
-  wizardStory: state => state.story,
-  wizardLevels: state => state.levels,
-  wizardTeam: state => state.team,
-  wizardMatchers: state => state.matchers,
-  wizardCustomize: state => state.customize,
+  // wizardCover: state => state.cover,
+  // wizardGoalTime: state => state.goalTime,
+  // wizardStory: state => state.story,
+  // wizardLevels: state => state.levels,
+  // wizardTeam: state => state.team,
+  // wizardMatchers: state => state.matchers,
+  // wizardCustomize: state => state.customize,
 };
 
 const actions = {

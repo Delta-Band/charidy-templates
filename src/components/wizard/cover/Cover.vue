@@ -9,12 +9,10 @@
         <v-icon class="icon">mdi-arrow-right</v-icon>
       </v-btn>
     </v-row>
-    <Collapsable :isOpen="wizardCover.advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
+    <Collapsable :isOpen="advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
       <template v-slot:title>Advanced Options</template>
       <template v-slot:content>
-        <div class="vertical-spacer" />
         <Countdown />
-        <div class="vertical-spacer" />
       </template>
     </Collapsable>
   </div>
@@ -36,15 +34,16 @@ export default {
     Collapsable
   },
   data: () => ({
-    advacedSectionHeight: 0
+    advacedSectionHeight: 0,
+    advanced: false,
   }),
   computed: {
-    ...mapGetters(["wizardPortrait", "wizardCover"])
+    ...mapGetters(["wizardPortrait", "campaignDetails"])
   },
   methods: {
     ...mapActions(["wizardUpdatePortrait", "wizardUpdateCover"]),
     toggleAdvancedMode() {
-      this.wizardUpdateCover({ advanced: !this.wizardCover.advanced });
+      this.advanced = !this.advanced;
     }
   }
 };
