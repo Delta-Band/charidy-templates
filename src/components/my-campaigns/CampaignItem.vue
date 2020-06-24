@@ -13,10 +13,6 @@
         </v-btn>
 
         <v-btn icon>
-          <v-icon size="25px">mdi-cash-usd-outline</v-icon>
-        </v-btn>
-
-        <v-btn icon>
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar>
