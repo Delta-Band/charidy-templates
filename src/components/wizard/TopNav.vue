@@ -9,7 +9,6 @@
       <v-btn class="preview btn" text ripple rounded>
         <v-icon class="icon">mdi-eye-outline</v-icon>Preview
       </v-btn>
-      <v-btn class="save btn" text ripple rounded>Save</v-btn>
     </section>
   </div>
 </template>

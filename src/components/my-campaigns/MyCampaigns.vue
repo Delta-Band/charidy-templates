@@ -3,11 +3,69 @@
     <div id="my-campaigns">
       <div class="vertical-spacer" />
       <section class="section">
-        <h1>My Campaigns</h1>
-        <!-- <v-btn class="create btn" ripple rounded @click="createNewCampaign">
-          <v-icon class="icon">mdi-plus</v-icon>New Campaign
-        </v-btn>-->
+        <v-row
+          align="center"
+          justify="space-between"
+          class="title-bar"
+          no-gutters
+        >
+          <h1>My Campaigns</h1>
+          <v-autocomplete
+            v-model="searchPhrase"
+            :items="myCampaignsList"
+            chips
+            clearable
+            hide-details
+            hide-selected
+            item-text="name"
+            item-value="name"
+            label="Search..."
+            solo
+            flat
+            outlined
+            rounded
+            color="#000"
+            class="search-box"
+            :menu-props="{
+              contentClass: 'search-menu',
+            }"
+          >
+            <template v-slot:no-data>
+              <v-list-item>
+                <v-list-item-title>
+                  My Campaigns
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+            <template v-slot:selection="{ attr, on, item, selected }">
+              <v-chip
+                v-bind="attr"
+                :input-value="selected"
+                color="rgba(0, 0, 0, 0.1)"
+                v-on="on"
+                class="chip"
+              >
+                <span v-text="item.name"></span>
+              </v-chip>
+            </template>
+            <template v-slot:item="{ item }">
+              <v-list-item-content>
+                <v-list-item-title>
+                  <v-row no-gutters>
+                    {{ item.name }}
+                  </v-row>
+                </v-list-item-title>
+              </v-list-item-content>
+              <v-list-item-action>
+                <v-icon>mdi-coin</v-icon>
+              </v-list-item-action>
+            </template>
+          </v-autocomplete>
+        </v-row>
       </section>
+      <v-col class="campaign-list" >
+        <CampaignItem v-for="campaign in myCampaignsList" :campaign="campaign" v-bind:key="campaign.id" />
+      </v-col>
       <section class="section">
         <Collapsable
           :isOpen="isNewCampaignOpen"
@@ -19,94 +77,10 @@
             New Campaign
           </template>
           <template v-slot:content>
-            <v-form v-model="valid">
-              <section class="section add-campaign-section">
-                <div
-                  :class="{
-                    top: myCampaignsPortrait,
-                    left: !myCampaignsPortrait,
-                  }"
-                >
-                  <div class="label">
-                    Campaign Name
-                  </div>
-                  <p>
-                    Internal name
-                  </p>
-                </div>
-                <div
-                  :class="{
-                    bottom: myCampaignsPortrait,
-                    right: !myCampaignsPortrait,
-                  }"
-                >
-                  <v-text-field
-                    height="50"
-                    class="text-input"
-                    counter
-                    color="#000"
-                    :rules="nameRules"
-                  ></v-text-field>
-                </div>
-              </section>
-              <div class="vertical-spacer" />
-              <section class="section add-campaign-section">
-                <div
-                  :class="{
-                    top: myCampaignsPortrait,
-                    left: !myCampaignsPortrait,
-                  }"
-                >
-                  <div class="label">
-                    How would you like to fundrais?
-                  </div>
-                  <p>
-                    Select one option
-                  </p>
-                </div>
-                <div
-                  :class="{
-                    bottom: myCampaignsPortrait,
-                    right: !myCampaignsPortrait,
-                  }"
-                >
-                  <v-radio-group
-                    v-model="campaignType"
-                    mandatory
-                    name="campaign-type"
-                    @change="onChangeCampaignTypeHandler"
-                    class="campaign-types"
-                  >
-                    <v-radio
-                      v-for="item in campaignTypes"
-                      :key="item.value"
-                      :value="item"
-                      active-class="selected"
-                      class="campaign-type-option"
-                      color="#000"
-                    >
-                      <template v-slot:label>
-                        <v-col>
-                          <v-row class="label">{{ item.label }}</v-row>
-                          <v-row>{{ item.description }}</v-row>
-                        </v-col>
-                      </template>
-                    </v-radio>
-                  </v-radio-group>
-                </div>
-              </section>
-            </v-form>
+            <NewCampaignForm />
           </template>
         </Collapsable>
       </section>
-      <ul>
-        <li
-          v-for="(campaign, index) in myCampaignsList"
-          v-bind:key="campaign.id"
-        >
-          {{ index }} {{ campaign.name }}
-        </li>
-      </ul>
     </div>
   </v-app>
 </template>
@@ -114,42 +88,19 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Collapsable from '@/shared-components/Collapsable.vue';
+import NewCampaignForm from './NewCampaignForm';
+import CampaignItem from './CampaignItem';
 
 export default {
   name: 'MyCampaigns',
   components: {
     Collapsable,
+    NewCampaignForm,
+    CampaignItem,
   },
-  data() {
-    const campaignTypes = [
-      {
-        value: 'year-round-giving',
-        label: 'Year Round Giving (Donate to Org)',
-        description:
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-      },
-      {
-        value: 'live-event',
-        label: 'Live Event / Gala (Dinner)',
-        description:
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-      },
-      {
-        value: 'crowd-funding',
-        label: 'Crowdfunding / Regular Campaign (Unidy / Standard)',
-        description:
-          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
-      },
-    ];
+  data: () => {
     return {
-      campaignTypes,
-      campaignType: campaignTypes[0],
-      valid: false,
-      nameRules: [
-        v => !!v || 'This is required',
-        v => (v && v.length <= 20) || 'Name must be less than 20 characters',
-        v => (v && v.length >= 2) || 'Name must be at least 2 characters',
-      ],
+      searchPhrase: '',
     };
   },
   created() {
@@ -242,8 +193,13 @@ export default {
   margin-right: 10px;
 }
 
-h1 {
-  margin-bottom: 20px;
+.title-bar {
+  margin-bottom: 40px;
+
+  h1 {
+    margin: 0;
+    margin-right: 5%;
+  }
 }
 
 .add-campaign-section {
@@ -252,5 +208,38 @@ h1 {
 
 .campaign-types {
   margin-top: 0;
+}
+
+.campaign-list {
+  flex-grow: 0;
+  padding: 0 10%;
+}
+
+.chip {
+  // border-radius: 3px;
+  padding: 0 20px;
+  height: 33px;
+  margin: 0 10px 0 0;
+  transform: translateX(-7px);
+}
+
+.search-box {
+  max-width: 400px;
+
+  &::v-deep {
+    .v-input__slot {
+      padding-left: 20px;
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.search-menu {
+  background: green;
+  border-radius: 5px !important;
+  // max-width: 200px !important;
+  // min-width: 0 !important;
+  transform: translate(0, 7px);
 }
 </style>
