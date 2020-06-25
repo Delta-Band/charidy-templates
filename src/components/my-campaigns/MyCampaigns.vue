@@ -3,10 +3,9 @@
     <div id="my-campaigns">
       <div class="vertical-spacer" />
       <section class="section">
-        <v-row
+        <div
           align="center"
-          justify="space-between"
-          class="title-bar"
+          class="title-bar d-flex flex-column"
           no-gutters
         >
           <h1>My Campaigns</h1>
@@ -22,8 +21,6 @@
             label="Search..."
             solo
             flat
-            outlined
-            rounded
             color="#000"
             class="search-box"
             :menu-props="{
@@ -61,12 +58,20 @@
               </v-list-item-action>
             </template>
           </v-autocomplete>
-        </v-row>
+        </div>
       </section>
-      <v-col class="campaign-list" >
-        <CampaignItem v-for="campaign in myCampaignsList" :campaign="campaign" v-bind:key="campaign.id" />
-      </v-col>
-      <section class="section">
+      <div class="flex-column justify-start campaign-list-wrapper" v-for="type in campaignTypes" v-bind:key="type.value">
+        <h3 class="type flex-row justify-start">{{ type.label }}</h3>
+        <div class="campaign-list d-flex flex-wrap">
+          <CampaignItem
+            v-for="campaign in filterCampaignsBy(type.value)"
+            :campaign="campaign"
+            v-bind:key="campaign.id"
+          />
+          <NewCampaignForm :type="type.value"/>
+        </div>
+      </div>
+      <!-- <section class="section">
         <Collapsable
           :isOpen="isNewCampaignOpen"
           @toggle="toggleNewCampaignMode"
@@ -80,21 +85,21 @@
             <NewCampaignForm />
           </template>
         </Collapsable>
-      </section>
+      </section> -->
     </div>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import Collapsable from '@/shared-components/Collapsable.vue';
+// import Collapsable from '@/shared-components/Collapsable.vue';
 import NewCampaignForm from './NewCampaignForm';
 import CampaignItem from './CampaignItem';
 
 export default {
   name: 'MyCampaigns',
   components: {
-    Collapsable,
+    // Collapsable,
     NewCampaignForm,
     CampaignItem,
   },
@@ -117,6 +122,7 @@ export default {
       'myCampaignsPortrait',
       'myCampaignsList',
       'isNewCampaignOpen',
+      'campaignTypes',
     ]),
   },
   methods: {
@@ -139,6 +145,9 @@ export default {
       console.log(item);
       // this.campaignType =
     },
+    filterCampaignsBy(type) {
+      return this.myCampaignsList.filter(itm => itm.type === type);
+    },
   },
 };
 </script>
@@ -155,6 +164,15 @@ export default {
   flex-direction: column;
   align-items: stretch;
   overflow: auto;
+
+  .campaign-list-wrapper {
+    padding: 0 $gutter;
+
+    .type {
+      text-align: left;
+      padding: 20px 0;
+    }
+  }
 
   .campaign-type-option {
     box-shadow: 0 0 0 1px $darkBorderAccentColor;
@@ -188,31 +206,31 @@ export default {
   @extend .vertical-spacer;
 }
 
-.icon {
-  font-size: 20px;
-  margin-right: 10px;
-}
+// .icon {
+//   font-size: 20px;
+//   margin-right: 10px;
+// }
 
 .title-bar {
   margin-bottom: 40px;
+  text-align: left;
 
   h1 {
-    margin: 0;
-    margin-right: 5%;
+    margin: 0 0 15px 0;
   }
 }
 
-.add-campaign-section {
-  padding: 0 5%;
-}
+// .add-campaign-section {
+//   padding: 0 5%;
+// }
 
-.campaign-types {
-  margin-top: 0;
-}
+// .campaign-types {
+//   margin-top: 0;
+// }
 
 .campaign-list {
   flex-grow: 0;
-  padding: 0 10%;
+  position: relative;
 
   @for $i from 1 through 6 {
     :nth-child(#{$i}) {
