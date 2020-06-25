@@ -85,7 +85,7 @@ export default {
 .completion-overview {
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
 
   .stage-list {
     width: 100%;
@@ -97,6 +97,7 @@ export default {
 
   .stage {
     border-radius: 0;
+    height: 43px;
   }
 
   // .stage {
