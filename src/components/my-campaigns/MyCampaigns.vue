@@ -2,14 +2,9 @@
   <v-app>
     <div id="my-campaigns">
       <div class="vertical-spacer" />
-      <section class="section">
-        <div
-          align="center"
-          class="title-bar d-flex flex-column"
-          no-gutters
-        >
-          <h1>My Campaigns</h1>
-          <v-autocomplete
+      <section class="section title-bar">
+        <h1>My Campaigns</h1>
+          <!-- <v-autocomplete
             v-model="searchPhrase"
             :items="myCampaignsList"
             chips
@@ -57,21 +52,9 @@
                 <v-icon>mdi-coin</v-icon>
               </v-list-item-action>
             </template>
-          </v-autocomplete>
-        </div>
+          </v-autocomplete> -->
       </section>
-      <div class="flex-column justify-start campaign-list-wrapper" v-for="type in campaignTypes" v-bind:key="type.value">
-        <h3 class="type flex-row justify-start">{{ type.label }}</h3>
-        <div class="campaign-list d-flex flex-wrap">
-          <CampaignItem
-            v-for="campaign in filterCampaignsBy(type.value)"
-            :campaign="campaign"
-            v-bind:key="campaign.id"
-          />
-          <NewCampaignForm :type="type.value"/>
-        </div>
-      </div>
-      <!-- <section class="section">
+      <section class="section new-campaign">
         <Collapsable
           :isOpen="isNewCampaignOpen"
           @toggle="toggleNewCampaignMode"
@@ -85,21 +68,28 @@
             <NewCampaignForm />
           </template>
         </Collapsable>
-      </section> -->
+      </section>
+      <div class="d-flex flex-wrap justify-start campaign-list-wrapper" v-for="type in campaignTypes" v-bind:key="type.value">
+        <CampaignItem
+            v-for="campaign in filterCampaignsBy(type.value)"
+            :campaign="campaign"
+            v-bind:key="campaign.id"
+          />
+      </div>
     </div>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-// import Collapsable from '@/shared-components/Collapsable.vue';
+import Collapsable from '@/shared-components/Collapsable.vue';
 import NewCampaignForm from './NewCampaignForm';
 import CampaignItem from './CampaignItem';
 
 export default {
   name: 'MyCampaigns',
   components: {
-    // Collapsable,
+    Collapsable,
     NewCampaignForm,
     CampaignItem,
   },
@@ -220,13 +210,9 @@ export default {
   }
 }
 
-// .add-campaign-section {
-//   padding: 0 5%;
-// }
-
-// .campaign-types {
-//   margin-top: 0;
-// }
+.new-campaign {
+  margin-bottom: 20px;
+}
 
 .campaign-list {
   flex-grow: 0;

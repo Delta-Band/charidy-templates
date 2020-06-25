@@ -98,6 +98,7 @@ export default {
   .stage {
     border-radius: 0;
     height: 43px;
+    padding: 0 26px;
   }
 
   // .stage {

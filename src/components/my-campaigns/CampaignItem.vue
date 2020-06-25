@@ -2,21 +2,21 @@
   <div class="campaign-list-item">
     <v-col>
       <v-toolbar flat class="tool-bar">
-        <v-toolbar-title
-          ><b>{{ campaign.name }}</b>
+        <v-toolbar-title>
+          <div class="d-flex flex-column">
+            <b>{{ campaign.name }}</b>
+            <div class="type">{{ getReadableType(campaign.type) }}</div>
+          </div>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-
-        <v-btn icon @click="goToWizard">
-          <v-icon size="21px">mdi-eye-outline</v-icon>
-        </v-btn>
-
         <v-btn icon>
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </v-toolbar>
       <v-responsive :aspect-ratio="16 / 9" class="cover-image">
-        <img src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png" />
+        <img
+          src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"
+        />
       </v-responsive>
       <div class="cover-image" />
       <CompletionOverview :campaign="campaign" />
@@ -59,20 +59,21 @@ export default {
 .campaign-list-item {
   @extend .campaignCard;
 
-  .type {
-    font-size: 15px;
-    margin-left: 10px;
-  }
-
   .tool-bar {
     height: auto !important;
+    padding: 16px 26px;
     // padding-bottom: 250px;
 
     &::v-deep {
       .v-toolbar__content {
         height: auto !important;
+        padding: 0;
       }
     }
+
+    .type {
+    font-size: 15px;
+  }
   }
 
   .summary {
