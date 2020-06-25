@@ -69,9 +69,9 @@
           </template>
         </Collapsable>
       </section>
-      <div class="d-flex flex-wrap justify-start campaign-list-wrapper" v-for="type in campaignTypes" v-bind:key="type.value">
+      <div class="d-flex flex-wrap justify-start campaign-list-wrapper">
         <CampaignItem
-            v-for="campaign in filterCampaignsBy(type.value)"
+            v-for="campaign in myCampaignsList"
             :campaign="campaign"
             v-bind:key="campaign.id"
           />
