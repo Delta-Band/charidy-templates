@@ -2,33 +2,36 @@
   <div class="completion-overview d-flex flex-column">
     <div class="stage-list d-flex flex-column">
       <template v-for="stage in stages">
-        <v-btn
-          text
-          ripple
-          class="stage d-flex justify-space-between"
-          :key="stage.txt"
-        >
-          <div class="label d-flex">
-            {{ stage.txt }}
-          </div>
-          <v-progress-linear
-            class="progress-bar"
-            :value="stage.completed"
-            background-color="rgba(0, 0, 0, 0.2)"
-            color="#000"
-          />
+        <v-btn text ripple class="stage" :key="stage.txt">
+          <router-link
+            :to="{name: stage.linkTo}"
+            class="link d-flex justify-space-between"
+          >
+            <div class="stage-label-container">
+              <div class="label d-flex">
+                {{ stage.txt }}
+              </div>
+              <v-progress-linear
+                class="progress-bar"
+                :value="stage.completed"
+                background-color="rgba(0, 0, 0, 0.2)"
+                color="#000"
+              />
+            </div>
+            <v-icon>mdi-chevron-right</v-icon>
+          </router-link>
         </v-btn>
       </template>
       <v-btn
-          text
-          ripple
-          :disabled="!valid"
-          class="stage d-flex justify-space-between"
-        >
-          <div class="label d-flex">
-            Submit for review
-          </div>
-        </v-btn>
+        text
+        ripple
+        :disabled="!valid"
+        class="stage d-flex justify-space-between"
+      >
+        <div class="label d-flex">
+          Submit for review
+        </div>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -48,12 +51,12 @@ export default {
       {
         txt: 'Legal entity',
         completed: 25,
-        linkTo: 'wizard-goal-and-time',
+        linkTo: 'undefined',
       },
       {
         txt: 'Payment gateway',
         completed: 10,
-        linkTo: 'wizard-story',
+        linkTo: 'undefined',
       },
     ];
     return {
@@ -91,8 +94,13 @@ export default {
     width: 100%;
   }
 
+  .stage-label-container {
+    width: 100px;
+  }
+
   .progress-bar {
-    width: 40%;
+    width: 100%;
+    margin-top: 5px;
   }
 
   .stage {
@@ -101,23 +109,11 @@ export default {
     padding: 0 26px;
   }
 
-  // .stage {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  //   height: auto;
-  //   padding: 10px 0;
-  //   width: calc(100% / 3);
-  //   flex-shrink: 0;
-  //   box-sizing: border-box;
-
-  //   &::v-deep {
-  //     .v-btn__content {
-  //       flex-direction: inherit;
-  //     }
-  //   }
-  // }
+  .link {
+    color: inherit;
+    text-decoration: none;
+    width: 100%;
+  }
 
   .label {
     margin-top: 5px;

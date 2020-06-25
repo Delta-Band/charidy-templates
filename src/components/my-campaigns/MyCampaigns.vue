@@ -1,10 +1,9 @@
 <template>
-  <v-app>
-    <div id="my-campaigns">
-      <div class="vertical-spacer" />
-      <section class="section title-bar">
-        <h1>My Campaigns</h1>
-          <!-- <v-autocomplete
+  <div id="my-campaigns">
+    <div class="vertical-spacer" />
+    <section class="section title-bar">
+      <h1>My Campaigns</h1>
+      <!-- <v-autocomplete
             v-model="searchPhrase"
             :items="myCampaignsList"
             chips
@@ -53,31 +52,30 @@
               </v-list-item-action>
             </template>
           </v-autocomplete> -->
-      </section>
-      <section class="section new-campaign">
-        <Collapsable
-          :isOpen="isNewCampaignOpen"
-          @toggle="toggleNewCampaignMode"
-          container="#my-campaigns"
-        >
-          <template v-slot:title>
-            <v-icon class="icon">mdi-plus</v-icon>
-            New Campaign
-          </template>
-          <template v-slot:content>
-            <NewCampaignForm />
-          </template>
-        </Collapsable>
-      </section>
-      <div class="d-flex flex-wrap justify-start campaign-list-wrapper">
-        <CampaignItem
-            v-for="campaign in myCampaignsList"
-            :campaign="campaign"
-            v-bind:key="campaign.id"
-          />
-      </div>
+    </section>
+    <section class="section new-campaign">
+      <Collapsable
+        :isOpen="isNewCampaignOpen"
+        @toggle="toggleNewCampaignMode"
+        container="#my-campaigns"
+      >
+        <template v-slot:title>
+          <v-icon class="icon">mdi-plus</v-icon>
+          New Campaign
+        </template>
+        <template v-slot:content>
+          <NewCampaignForm />
+        </template>
+      </Collapsable>
+    </section>
+    <div class="d-flex flex-wrap justify-start campaign-list-wrapper">
+      <CampaignItem
+        v-for="campaign in myCampaignsList"
+        :campaign="campaign"
+        v-bind:key="campaign.id"
+      />
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -136,7 +134,7 @@ export default {
       // this.campaignType =
     },
     filterCampaignsBy(type) {
-      return this.myCampaignsList.filter(itm => itm.type === type);
+      return this.myCampaignsList.filter((itm) => itm.type === type);
     },
   },
 };
@@ -147,13 +145,9 @@ export default {
 
 #my-campaigns {
   width: 100%;
-  height: 100%;
-  background-color: rgb(238, 238, 238);
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  overflow: auto;
 
   .campaign-list-wrapper {
     padding: 0 $gutter;

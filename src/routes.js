@@ -25,6 +25,11 @@ export default new Router({
       component: MyCampaigns,
     },
     {
+      path: '/my-campaignes',
+      name: 'my-campaignes',
+      component: MyCampaigns,
+    },
+    {
       path: '/:campaignId/wizard',
       name: 'wizard',
       component: Wizard,

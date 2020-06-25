@@ -1,52 +1,48 @@
 <template>
-  <v-app>
-    <div id="wizard">
-      <TopNav />
-      <div id="wizard-content">
-        <Steps />
-        <router-view />
-      </div>
+  <div id="wizard">
+    <TopNav />
+    <div id="wizard-content">
+      <Steps />
+      <router-view />
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import TopNav from "./TopNav.vue";
-import Steps from "./steps/Steps.vue";
-import { mapActions } from "vuex";
+import TopNav from './TopNav.vue';
+import Steps from './steps/Steps.vue';
+import { mapActions } from 'vuex';
 
 export default {
-  name: "Wizard",
+  name: 'Wizard',
   components: {
     TopNav,
-    Steps
+    Steps,
   },
   created() {
-    window.addEventListener("resize", this.onRisize);
+    window.addEventListener('resize', this.onRisize);
   },
   destroyed() {
-    window.removeEventListener("resize", this.onRisize);
+    window.removeEventListener('resize', this.onRisize);
   },
   mounted() {
     this.wizardUpdatePortrait(this.$el.clientWidth);
   },
   methods: {
-    ...mapActions(["wizardUpdatePortrait"]),
+    ...mapActions(['wizardUpdatePortrait']),
     onRisize() {
       this.wizardUpdatePortrait(this.$el.clientWidth);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/shared-styles/index";
+@import '@/shared-styles/index';
 
 #wizard {
   width: 100%;
   height: 100%;
-  background-color: rgb(238, 238, 238);
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: stretch;
