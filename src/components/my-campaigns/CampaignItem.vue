@@ -1,5 +1,5 @@
 <template>
-  <div class="campaign-list-item">
+  <div class="campaign-list-item" :style="{'width': `calc((100% - 40px) / ${myCampaignsColumns})`}">
     <v-col>
       <v-toolbar flat class="tool-bar">
         <v-toolbar-title>
@@ -37,7 +37,7 @@ export default {
     campaign: Object,
   },
   computed: {
-    ...mapGetters(['myCampaignsPortrait', 'campaignTypes']),
+    ...mapGetters(['myCampaignsPortrait', 'campaignTypes', 'myCampaignsColumns']),
   },
   methods: {
     goToWizard() {
@@ -57,7 +57,28 @@ export default {
 @import '@/shared-styles/index';
 
 .campaign-list-item {
-  @extend .campaignCard;
+  border: 1px solid $greyDark;
+  background: $white50alpha;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  opacity: 0;
+  @extend .popIn;
+  overflow: hidden;
+  text-align: left;
+
+  &:nth-of-type(3n) {
+    margin-right: 0;
+  }
+
+  &::v-deep {
+    .col {
+      padding: 0;
+    }
+  }
 
   .tool-bar {
     height: auto !important;
@@ -72,8 +93,8 @@ export default {
     }
 
     .type {
-    font-size: 15px;
-  }
+      font-size: 15px;
+    }
   }
 
   .summary {

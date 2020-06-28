@@ -139,30 +139,3 @@ $gutter: 10%;
   height: 8vh;
   max-height: 100px;
 }
-
-.campaignCard {
-  border: 1px solid $greyDark;
-  background: $white50alpha;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  width: calc((100% - 40px) / 3);
-  margin-right: 20px;
-  flex-shrink: 0;
-  flex-grow: 0;
-  opacity: 0;
-  @extend .popIn;
-  overflow: hidden;
-  // height: 482px;
-  text-align: left;
-
-  &:nth-of-type(3n) {
-    margin-right: 0;
-  }
-
-  &::v-deep {
-    .col {
-      padding: 0;
-    }
-  }
-}

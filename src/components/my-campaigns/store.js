@@ -3,6 +3,7 @@ import md5 from 'md5';
 
 const state = {
   portrait: false,
+  columns: 3,
   campaignsList: [],
   isNewCampaignOpen: false,
   campaignTypes: [
@@ -30,6 +31,7 @@ const state = {
 const getters = {
   myCampaignsPortrait: (state) => state.portrait,
   myCampaignsList: (state) => state.campaignsList,
+  myCampaignsColumns: (state) => state.columns,
   campaignTypes: (state) => state.campaignTypes,
   isNewCampaignOpen: (state) => state.isNewCampaignOpen,
   campaignDetails: state => id => { 
