@@ -2,16 +2,20 @@
   <div class="top-nav">
     <section class="left">
       <v-btn class="exit btn" text ripple rounded @click="exitWizard">
-        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-view-grid</v-icon>
+        <v-icon class="icon" :class="{ 'center-me': wizardPortrait }"
+          >mdi-view-grid</v-icon
+        >
         <span v-if="!wizardPortrait">My Campaigns</span>
       </v-btn>
     </section>
     <section class="center">
-      <h3>{{details ? details.name : 'Campaign not found!'}}</h3>
+      <h3>{{ details ? details.name : 'Campaign not found!' }}</h3>
     </section>
     <section class="right">
       <v-btn class="preview btn" text ripple rounded>
-        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-eye-outline</v-icon>
+        <v-icon class="icon" :class="{ 'center-me': wizardPortrait }"
+          >mdi-eye-outline</v-icon
+        >
         <span v-if="!wizardPortrait">Preview</span>
       </v-btn>
     </section>
@@ -19,26 +23,26 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-  name: "TopNav",
+  name: 'TopNav',
   methods: {
     exitWizard() {
-      this.$router.push({ name: 'my-campaigns'});
-    }
+      this.$router.push({ name: 'my-campaigns' });
+    },
   },
   computed: {
-    ...mapGetters(["wizardPortrait", "campaignDetails"]),
+    ...mapGetters(['wizardPortrait', 'campaignDetails']),
     details() {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/shared-styles/index";
+@import '@/shared-styles/index';
 
 .top-nav {
   @extend %app-bar;

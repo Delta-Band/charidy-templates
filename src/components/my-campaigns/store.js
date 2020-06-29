@@ -1,4 +1,5 @@
 import md5 from 'md5';
+import merge from 'deepmerge';
 // import Router from 'vue-router';
 
 const state = {
@@ -35,12 +36,12 @@ const getters = {
   myCampaignsList: (state) => state.campaignsList,
   campaignTypes: (state) => state.campaignTypes,
   isNewCampaignOpen: (state) => state.isNewCampaignOpen,
-  campaignDetails: state => id => { 
+  campaignDetails: (state) => (id) => {
     if (id) {
-      return state.campaignsList.find(itm => itm.id === id);
+      return state.campaignsList.find((itm) => itm.id === id);
     }
     return null;
-  }
+  },
 };
 
 const actions = {
@@ -88,6 +89,9 @@ const actions = {
   myCampaignsCloseNewSection({ commit }) {
     commit('myCampaignsCloseNewSection');
   },
+  updateCampaign({ commit }, payload) {
+    commit('updateCampaign', payload);
+  },
 };
 
 const mutations = {
@@ -107,6 +111,12 @@ const mutations = {
   },
   myCampaignsCloseNewSection: (state) => {
     state.isNewCampaignOpen = false;
+  },
+  updateCampaign: (state, {campaignId, updates}) => {
+    const index = state.campaignsList.findIndex((itm) => itm.id === campaignId);
+    state.campaignsList[index] = merge(state.campaignsList[index], updates);
+    console.log(updates);
+    console.log(state.campaignsList[index]);
   },
 };
 

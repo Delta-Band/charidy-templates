@@ -5,19 +5,27 @@
       <Steps />
       <router-view />
     </div>
+    <SaveIndicator v-if="showSavedIndicator"/>
   </div>
 </template>
 
 <script>
 import TopNav from './TopNav.vue';
 import Steps from './steps/Steps.vue';
-import { mapActions } from 'vuex';
+import SaveIndicator from './SaveIndicator.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Wizard',
   components: {
     TopNav,
     Steps,
+    SaveIndicator,
+  },
+  computed: {
+    ...mapGetters([
+      'showSavedIndicator',
+    ]),
   },
   created() {
     window.addEventListener('resize', this.onRisize);

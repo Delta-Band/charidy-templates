@@ -97,7 +97,7 @@ $guttter: 7.5%;
   flex-shrink: 0;
   flex-grow: 0;
   opacity: 0;
-  @extend .popIn;
+  @extend %popIn;
   overflow: hidden;
   text-align: left;
   line-height: 1.5em;

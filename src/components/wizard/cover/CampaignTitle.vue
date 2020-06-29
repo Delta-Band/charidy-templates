@@ -1,50 +1,87 @@
 <template>
-  <div class="campaign-title" :class="{
-        'portrait': wizardPortrait,
-        }">
-    <section :class="{
-        'top': wizardPortrait,
-        'left': !wizardPortrait,
-        }">
+  <div
+    class="campaign-title"
+    :class="{
+      portrait: wizardPortrait,
+    }"
+  >
+    <section
+      :class="{
+        top: wizardPortrait,
+        left: !wizardPortrait,
+      }"
+    >
       <div class="label">
         Campaign Title
       </div>
-      <p>Write a clear, brief title that helps people quickly understand the gist of your project.</p>
+      <p>
+        Write a clear, brief title that helps people quickly understand the gist
+        of your project.
+      </p>
       <span class="tag required">Required</span>
     </section>
     <section
       :class="{
-        'bottom': wizardPortrait,
-        'right': !wizardPortrait,
-        }"
+        bottom: wizardPortrait,
+        right: !wizardPortrait,
+      }"
     >
       <div class="input-title">Title</div>
-      <v-text-field height="50" class="text-input" counter color="#000"></v-text-field>
+      <v-text-field
+        height="50"
+        class="text-input"
+        counter
+        color="#000"
+        @change="saveTitle"
+        :value="details.cover.title"
+      ></v-text-field>
       <Tip class="text-input-tip">Title tip...</Tip>
       <div class="input-title">Subtitle</div>
-      <v-text-field height="50" class="text-input" counter color="#000"></v-text-field>
+      <v-text-field
+        height="50"
+        class="text-input"
+        counter
+        color="#000"
+      ></v-text-field>
       <Tip class="text-input-tip">Subtitle tip...</Tip>
     </section>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Tip from "@/shared-components/Tip";
+import { mapGetters, mapActions } from 'vuex';
+import Tip from '@/shared-components/Tip';
 
 export default {
-  name: "CampaignTitle",
+  name: 'CampaignTitle',
   components: {
-    Tip
+    Tip,
   },
   computed: {
-    ...mapGetters(["wizardPortrait"])
-  }
+    ...mapGetters(['wizardPortrait', 'campaignDetails']),
+    details() {
+      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
+    },
+  },
+  methods: {
+    ...mapActions(['updateCampaign', 'showSavedIndicator']),
+    saveTitle(val) {
+      this.showSavedIndicator();
+      this.updateCampaign({
+        campaignId: this.$router.currentRoute.params.campaignId,
+        updates: {
+          cover: {
+            title: val,
+          },
+        },
+      });
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/shared-styles/index";
+@import '@/shared-styles/index';
 
 .campaign-title {
   width: 100%;
