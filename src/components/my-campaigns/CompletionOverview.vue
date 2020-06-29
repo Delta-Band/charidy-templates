@@ -155,9 +155,9 @@ $guttter: 12%;
   .submit-btn {
     background-color: rgba(black, 0.05);
 
-    &:disabled {
-      // background-color: rgba(black, 0.1);
-    }
+    // &:disabled {
+    //   // background-color: rgba(black, 0.1);
+    // }
   }
 }
 
