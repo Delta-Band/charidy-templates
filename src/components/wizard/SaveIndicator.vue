@@ -14,7 +14,10 @@ export default {
     ...mapActions(['hideSavedIndicator']),
   },
   mounted() {
-    setTimeout(this.hideSavedIndicator, 2000);
+    setTimeout(() => {
+      this.$el.classList.add('remove');
+      setTimeout(this.hideSavedIndicator, 1000);
+    }, 1000);
   }
 };
 </script>
@@ -34,5 +37,9 @@ $gutter: 4vw;
 
   border-radius: 5px;
   @extend %popIn;
+
+  &.remove {
+    @extend %popOut;
+  }
 }
 </style>
