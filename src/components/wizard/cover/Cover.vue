@@ -3,12 +3,7 @@
     <CoverMedia />
     <div class="vertical-spacer" />
     <CampaignTitle />
-    <v-row justify="end" no-gutters class="next-wrapper">
-      <v-btn class="next-btn" text ripple rounded>
-        Next
-        <v-icon class="icon">mdi-arrow-right</v-icon>
-      </v-btn>
-    </v-row>
+    <NextBtn routeName="wizard-goal-and-time">Next</NextBtn>
     <Collapsable :isOpen="advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
       <template v-slot:title>Advanced Options</template>
       <template v-slot:content>
@@ -23,6 +18,7 @@ import CoverMedia from "./CoverMedia.vue";
 import CampaignTitle from "./CampaignTitle.vue";
 import Countdown from "./Countdown.vue";
 import Collapsable from "@/shared-components/Collapsable.vue";
+import NextBtn from "../NextBtn";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
@@ -31,7 +27,8 @@ export default {
     CoverMedia,
     CampaignTitle,
     Countdown,
-    Collapsable
+    Collapsable,
+    NextBtn,
   },
   data: () => ({
     advacedSectionHeight: 0,
@@ -47,6 +44,12 @@ export default {
     },
     details() {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
+    },
+    goToNextPage() {
+        this.$router.push({
+        name: 'wizard-goal-and-time',
+        params: { campaignId: this.$router.currentRoute.params.campaignId },
+      });
     }
   }
 };
@@ -85,12 +88,6 @@ export default {
       margin-left: 10px;
       font-size: 20px;
     }
-  }
-
-  .next-wrapper {
-    padding: 0 10%;
-    margin-top: 50px;
-    margin-bottom: 50px;
   }
 }
 </style>

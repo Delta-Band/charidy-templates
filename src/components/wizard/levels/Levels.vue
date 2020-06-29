@@ -1,12 +1,18 @@
 <template>
   <div class="levels">
     Levels
+    <NextBtn routeName="wizard-teams">Next</NextBtn>
   </div>
 </template>
 
 <script>
+import NextBtn from '../NextBtn';
+
 export default {
-  name: 'Levels'
+  name: 'Levels',
+  components: {
+    NextBtn,
+  },
 }
 </script>
 
