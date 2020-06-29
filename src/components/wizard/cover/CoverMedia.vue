@@ -6,12 +6,12 @@
         }">
       <div class="label">
         Cover Media
+        <RequiredTag />
       </div>
       <p>Add an image that clearly represents your project.</p>
       <p>Choose one that looks good at different sizes. It will appear in different sizes in different places: on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.</p>
       <p>You may want to avoid including banners, badges, and text because they may not be legible at smaller sizes.</p>
       <p>Your image should be at least 1024x576 pixels. It will be cropped to a 16:9 ratio.</p>
-      <span class="tag required">Required</span>
     </section>
     <section
       :class="{
@@ -43,11 +43,13 @@
 <script>
 import { mapGetters } from "vuex";
 import Tip from "@/shared-components/Tip";
+import RequiredTag from "@/shared-components/RequiredTag";
 
 export default {
   name: "CoverMedia",
   components: {
-    Tip
+    Tip,
+    RequiredTag,
   },
   data() {
     return {

@@ -13,12 +13,12 @@
     >
       <div class="label">
         Campaign Title
+        <RequiredTag />
       </div>
       <p>
         Write a clear, brief title that helps people quickly understand the gist
         of your project.
       </p>
-      <span class="tag required">Required</span>
     </section>
     <section
       :class="{
@@ -51,11 +51,13 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Tip from '@/shared-components/Tip';
+import RequiredTag from "@/shared-components/RequiredTag";
 
 export default {
   name: 'CampaignTitle',
   components: {
     Tip,
+    RequiredTag,
   },
   computed: {
     ...mapGetters(['wizardPortrait', 'campaignDetails']),

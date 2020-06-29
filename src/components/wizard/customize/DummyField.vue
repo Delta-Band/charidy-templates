@@ -8,9 +8,9 @@
         }">
       <div class="label">
         Title
+        <RequiredTag />
       </div>
       <p>Lorem Ipsum...</p>
-      <span class="tag required">Required</span>
     </section>
     <section
       :class="{
@@ -28,11 +28,13 @@
 <script>
 import { mapGetters } from "vuex";
 import Tip from "@/shared-components/Tip";
+import RequiredTag from "@/shared-components/RequiredTag";
 
 export default {
   name: "DummyField",
   components: {
-    Tip
+    Tip,
+    RequiredTag,
   },
   computed: {
     ...mapGetters(["wizardPortrait"])
