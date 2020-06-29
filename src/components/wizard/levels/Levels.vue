@@ -1,17 +1,24 @@
 <template>
   <div class="levels">
-    Levels
-    <NextBtn routeName="wizard-teams">Next</NextBtn>
+    <DummyField />
+    <BottomNav
+      :routeName="{
+        next: 'wizard-teams',
+        prev: 'wizard-story',
+      }"
+    />
   </div>
 </template>
 
 <script>
-import NextBtn from '../NextBtn';
+import BottomNav from '../BottomNav';
+import DummyField from './DummyField';
 
 export default {
   name: 'Levels',
   components: {
-    NextBtn,
+    BottomNav,
+    DummyField,
   },
 }
 </script>

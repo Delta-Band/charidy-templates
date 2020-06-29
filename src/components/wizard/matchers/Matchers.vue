@@ -1,17 +1,24 @@
 <template>
   <div class="matchers">
-    Matchers
-    <NextBtn routeName="wizard-customize">Next</NextBtn>
+    <DummyField />
+    <BottomNav
+      :routeName="{
+        next: 'wizard-customize',
+        prev: 'wizard-teams',
+      }"
+    />
   </div>
 </template>
 
 <script>
-import NextBtn from '../NextBtn';
+import BottomNav from '../BottomNav';
+import DummyField from './DummyField';
 
 export default {
   name: 'Matchers',
   components: {
-    NextBtn,
+    BottomNav,
+    DummyField,
   },
 }
 </script>

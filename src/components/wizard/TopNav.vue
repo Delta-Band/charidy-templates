@@ -2,8 +2,8 @@
   <div class="top-nav">
     <section class="left">
       <v-btn class="exit btn" text ripple rounded @click="exitWizard">
-        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-arrow-left</v-icon>
-        <span v-if="!wizardPortrait">Leave</span>
+        <v-icon class="icon" :class="{'center-me': wizardPortrait}">mdi-view-grid</v-icon>
+        <span v-if="!wizardPortrait">My Campaigns</span>
       </v-btn>
     </section>
     <section class="center">
@@ -25,7 +25,7 @@ export default {
   name: "TopNav",
   methods: {
     exitWizard() {
-      this.$router.push({ name: 'my-campaignes'});
+      this.$router.push({ name: 'my-campaigns'});
     }
   },
   computed: {

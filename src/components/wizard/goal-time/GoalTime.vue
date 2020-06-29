@@ -1,17 +1,24 @@
 <template>
   <div class="goal-time-page">
-    Goal &amp; Time
-    <NextBtn routeName="wizard-story">Next</NextBtn>
+    <DummyField />
+    <BottomNav
+      :routeName="{
+        next: 'wizard-story',
+        prev: 'wizard-cover',
+      }"
+    />
   </div>
 </template>
 
 <script>
-import NextBtn from '../NextBtn';
+import BottomNav from '../BottomNav';
+import DummyField from './DummyField';
 
 export default {
   name: 'GoalTime',
   components: {
-    NextBtn,
+    BottomNav,
+    DummyField,
   },
 };
 </script>

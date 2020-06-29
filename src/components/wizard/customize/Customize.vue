@@ -1,28 +1,30 @@
 <template>
   <div class="customize">
-    Customize
-    <v-row justify="end" no-gutters class="leave-wrapper">
-    <v-btn class="next-btn" text ripple rounded @click="exitWizard">
-      My Campaigns
-      <v-icon class="icon">mdi-arrow-right</v-icon>
-    </v-btn>
-  </v-row>
+    <DummyField />
+    <BottomNav
+      :routeName="{
+        next: 'my-campaigns',
+        prev: 'wizard-matchers',
+      }"
+    />
   </div>
 </template>
 
 <script>
+import DummyField from './DummyField';
+import BottomNav from '../BottomNav';
+
 export default {
   name: 'Customize',
-  methods: {
-    exitWizard() {
-      this.$router.push({ name: 'my-campaignes'});
-    }
-  }
-}
+  components: {
+    DummyField,
+    BottomNav,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .leave-wrapper {
+.leave-wrapper {
   padding: 0 10%;
   margin-top: 50px;
   margin-bottom: 50px;

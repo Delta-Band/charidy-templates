@@ -3,8 +3,16 @@
     <CoverMedia />
     <div class="vertical-spacer" />
     <CampaignTitle />
-    <NextBtn routeName="wizard-goal-and-time">Next</NextBtn>
-    <Collapsable :isOpen="advanced" @toggle="toggleAdvancedMode" container="#wizard-content" >
+    <BottomNav
+      :routeName="{
+        next: 'wizard-goal-and-time',
+      }"
+    />
+    <Collapsable
+      :isOpen="advanced"
+      @toggle="toggleAdvancedMode"
+      container="#wizard-content"
+    >
       <template v-slot:title>Advanced Options</template>
       <template v-slot:content>
         <Countdown />
@@ -14,31 +22,31 @@
 </template>
 
 <script>
-import CoverMedia from "./CoverMedia.vue";
-import CampaignTitle from "./CampaignTitle.vue";
-import Countdown from "./Countdown.vue";
-import Collapsable from "@/shared-components/Collapsable.vue";
-import NextBtn from "../NextBtn";
-import { mapGetters, mapActions } from "vuex";
+import CoverMedia from './CoverMedia.vue';
+import CampaignTitle from './CampaignTitle.vue';
+import Countdown from './Countdown.vue';
+import Collapsable from '@/shared-components/Collapsable.vue';
+import BottomNav from '../BottomNav';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: "Cover",
+  name: 'Cover',
   components: {
     CoverMedia,
     CampaignTitle,
     Countdown,
     Collapsable,
-    NextBtn,
+    BottomNav,
   },
   data: () => ({
     advacedSectionHeight: 0,
     advanced: false,
   }),
   computed: {
-    ...mapGetters(["wizardPortrait", "campaignDetails"])
+    ...mapGetters(['wizardPortrait', 'campaignDetails']),
   },
   methods: {
-    ...mapActions(["wizardUpdatePortrait", "wizardUpdateCover"]),
+    ...mapActions(['wizardUpdatePortrait', 'wizardUpdateCover']),
     toggleAdvancedMode() {
       this.advanced = !this.advanced;
     },
@@ -46,12 +54,12 @@ export default {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     },
     goToNextPage() {
-        this.$router.push({
+      this.$router.push({
         name: 'wizard-goal-and-time',
         params: { campaignId: this.$router.currentRoute.params.campaignId },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,17 +1,24 @@
 <template>
   <div class="teams">
-    Teams
-    <NextBtn routeName="wizard-matchers">Next</NextBtn>
+    <DummyField />
+    <BottomNav
+      :routeName="{
+        next: 'wizard-matchers',
+        prev: 'wizard-levels',
+      }"
+    />
   </div>
 </template>
 
 <script>
-import NextBtn from '../NextBtn';
+import BottomNav from '../BottomNav';
+import DummyField from './DummyField';
 
 export default {
   name: 'Teams',
   components: {
-    NextBtn,
+    BottomNav,
+    DummyField,
   },
 }
 </script>

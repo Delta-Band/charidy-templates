@@ -20,13 +20,13 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/my-campaignes',
-      name: 'my-campaignes',
+      path: '/my-campaigns',
+      name: 'my-campaigns',
       component: MyCampaigns,
     },
     {
-      path: '/my-campaignes',
-      name: 'my-campaignes',
+      path: '/my-campaigns',
+      name: 'my-campaigns',
       component: MyCampaigns,
     },
     {
@@ -73,7 +73,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/my-campaignes',
+      redirect: '/my-campaigns',
     },
   ],
 });
