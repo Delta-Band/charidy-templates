@@ -3,25 +3,27 @@ import md5 from 'md5';
 
 const state = {
   portrait: false,
-  columns: 3,
   campaignsList: [],
   isNewCampaignOpen: false,
   campaignTypes: [
     {
       value: 'year-round-giving',
       label: 'Year Round Giving (Donate to Org)',
+      shortLabel: 'Year Round Giving',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
     },
     {
       value: 'live-event',
       label: 'Live Event / Gala (Dinner)',
+      shortLabel: 'Live Event / Gala',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
     },
     {
       value: 'crowd-funding',
       label: 'Crowdfunding / Regular Campaign (Unidy / Standard)',
+      shortLabel: 'Crowdfunding',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam',
     },
@@ -31,7 +33,6 @@ const state = {
 const getters = {
   myCampaignsPortrait: (state) => state.portrait,
   myCampaignsList: (state) => state.campaignsList,
-  myCampaignsColumns: (state) => state.columns,
   campaignTypes: (state) => state.campaignTypes,
   isNewCampaignOpen: (state) => state.isNewCampaignOpen,
   campaignDetails: state => id => { 

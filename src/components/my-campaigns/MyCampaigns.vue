@@ -1,9 +1,10 @@
 <template>
-  <div id="my-campaigns">
-    <div class="vertical-spacer" />
-    <section class="section title-bar">
-      <h1>My Campaigns</h1>
-      <!-- <v-autocomplete
+  <div id="my-campaigns" class="d-flex flex-column">
+    <div class="app-bar"></div>
+    <div class="scrollable">
+      <section class="section title-bar">
+        <h1>My Campaigns</h1>
+        <!-- <v-autocomplete
             v-model="searchPhrase"
             :items="myCampaignsList"
             chips
@@ -52,28 +53,31 @@
               </v-list-item-action>
             </template>
           </v-autocomplete> -->
-    </section>
-    <section class="section new-campaign">
-      <Collapsable
-        :isOpen="isNewCampaignOpen"
-        @toggle="toggleNewCampaignMode"
-        container="#my-campaigns"
-      >
-        <template v-slot:title>
-          <v-icon class="icon">mdi-plus</v-icon>
-          New Campaign
-        </template>
-        <template v-slot:content>
-          <NewCampaignForm />
-        </template>
-      </Collapsable>
-    </section>
-    <div class="d-flex flex-wrap justify-start campaign-list-wrapper">
-      <CampaignItem
-        v-for="campaign in myCampaignsList"
-        :campaign="campaign"
-        v-bind:key="campaign.id"
-      />
+      </section>
+      <section class="section new-campaign">
+        <Collapsable
+          :isOpen="isNewCampaignOpen"
+          @toggle="toggleNewCampaignMode"
+          container="#my-campaigns"
+        >
+          <template v-slot:title>
+            <v-icon class="icon">mdi-plus</v-icon>
+            New Campaign
+          </template>
+          <template v-slot:content>
+            <NewCampaignForm />
+          </template>
+        </Collapsable>
+      </section>
+      <div class="d-flex flex-wrap justify-start campaign-list-wrapper">
+        <CampaignItem
+          v-for="(campaign, index) in myCampaignsList"
+          :campaign="campaign"
+          :numberOfColumns="numberOfColumns"
+          :index="index"
+          v-bind:key="campaign.id"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -93,7 +97,8 @@ export default {
   },
   data: () => {
     return {
-      searchPhrase: '',
+      // searchPhrase: '',
+      numberOfColumns: 4,
     };
   },
   created() {
@@ -103,7 +108,7 @@ export default {
     window.removeEventListener('resize', this.onRisize);
   },
   mounted() {
-    this.myCampaignsUpdatePortrait(this.$el.clientWidth);
+    this.onRisize();
   },
   computed: {
     ...mapGetters([
@@ -121,20 +126,10 @@ export default {
       'myCampaignsToggleNewSection',
     ]),
     onRisize() {
-      this.myCampaignsUpdatePortrait(this.$el.clientWidth);
-    },
-    createNewCampaign() {
-      console.log('create new campaign');
+      this.numberOfColumns = Math.floor(this.$el.clientWidth / 400);
     },
     toggleNewCampaignMode() {
       this.myCampaignsToggleNewSection();
-    },
-    onChangeCampaignTypeHandler(item) {
-      console.log(item);
-      // this.campaignType =
-    },
-    filterCampaignsBy(type) {
-      return this.myCampaignsList.filter((itm) => itm.type === type);
     },
   },
 };
@@ -143,11 +138,16 @@ export default {
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
+$gutter: 10vw;
+
 #my-campaigns {
-  width: 100%;
+  width: 100vw;
+  height: 100vh !important;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background: white;
+  overflow: hidden;
 
   .campaign-list-wrapper {
     padding: 0 $gutter;
@@ -182,30 +182,27 @@ export default {
   }
 }
 
+.scrollable {
+  height: 100%;
+  overflow: auto;
+}
+
 .section {
-  @extend .section;
+  padding: 0 $gutter;
 }
-
-.vertical-spacer {
-  @extend .vertical-spacer;
-}
-
-// .icon {
-//   font-size: 20px;
-//   margin-right: 10px;
-// }
 
 .title-bar {
-  margin-bottom: 40px;
+  margin-top: #{0.4 * $gutter};
+  margin-bottom: #{0.1 * $gutter};
   text-align: left;
 
   h1 {
-    margin: 0 0 15px 0;
+    margin: 0;
   }
 }
 
 .new-campaign {
-  margin-bottom: 20px;
+  margin-bottom: #{0.3 * $gutter};
 }
 
 .campaign-list {
@@ -236,14 +233,19 @@ export default {
     }
   }
 }
-</style>
 
-<style lang="scss">
-.search-menu {
-  background: green;
-  border-radius: 5px !important;
-  // max-width: 200px !important;
-  // min-width: 0 !important;
-  transform: translate(0, 7px);
+.app-bar {
+  @extend %app-bar;
 }
 </style>
+
+// <style lang="scss">
+// .search-menu {
+//   background: green;
+//   border-radius: 5px !important;
+//   // max-width: 200px !important;
+//   // min-width: 0 !important;
+//   transform: translate(0, 7px);
+// }
+// </style>
+

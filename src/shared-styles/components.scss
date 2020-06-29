@@ -139,3 +139,17 @@ $gutter: 10%;
   height: 8vh;
   max-height: 100px;
 }
+
+%app-bar {
+  width: 100%;
+  height: 60px;
+  flex-grow: 0;
+  border-bottom: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.79);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 20px 10px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}

@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <div v-if="$router.currentRoute.name === 'my-campaignes'" class="app-bar"> </div>
-      <div id="app-content">
-        <router-view />
-      </div>
+      <router-view />
     </v-app>Î  
   </div>
 </template>
@@ -38,18 +35,5 @@ body {
       flex-direction: column;
     }
   }
-}
-
-.app-bar {
-  z-index: 1;
-  background: white;
-  height: 80px;
-}
-
-#app-content {
-  width: 100vw;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(238, 238, 238);
 }
 </style>

@@ -46,6 +46,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  background: rgba(black, 0.05);
 }
 
 #wizard-content {

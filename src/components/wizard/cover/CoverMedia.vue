@@ -35,19 +35,19 @@
           </v-responsive>
         </v-tab-item>
       </v-tabs-items>
-      <FieldTip>{{tab === 0 ? 'Image tip...' : 'Video tip...'}}</FieldTip>
+      <Tip>{{tab === 0 ? 'Image tip...' : 'Video tip...'}}</Tip>
     </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import FieldTip from "@/shared-components/FieldTip";
+import Tip from "@/shared-components/Tip";
 
 export default {
   name: "CoverMedia",
   components: {
-    FieldTip
+    Tip
   },
   data() {
     return {

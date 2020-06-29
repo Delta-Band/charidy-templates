@@ -1,6 +1,29 @@
 <template>
-  <div class="campaign-list-item" :style="{'width': `calc((100% - 40px) / ${myCampaignsColumns})`}">
-    <v-col>
+  <v-responsive
+    :aspect-ratio="0.6"
+    class="campaign-list-item"
+    :style="{
+      width: `calc((100% - ${(numberOfColumns - 1) * (7.5 * 0.25)}%) / ${numberOfColumns})`,
+      marginRight: `${(index + 1) % numberOfColumns === 0 ? 0 : (7.5 * 0.25)}%`,
+    }"
+  >
+    <div class="d-flex flex-column inner-container">
+      <div class="d-flex justify-space-between">
+        <v-responsive :aspect-ratio="1" class="pic-ratio-box">
+          <v-avatar color="rgba(0, 0, 0, 0.1)" class="pic">
+            <!-- <img
+            src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png"
+          /> -->
+          </v-avatar>
+        </v-responsive>
+        <v-btn icon class="menu">
+          <v-icon>mdi-dots-horizontal</v-icon>
+        </v-btn>
+      </div>
+      <div class="name">{{ campaign.name }}</div>
+      <div class="type">{{ getReadableType(campaign.type) }}</div>
+      <CompletionOverview :campaign="campaign" />
+      <!-- <v-col>
       <v-toolbar flat class="tool-bar">
         <v-toolbar-title>
           <div class="d-flex flex-column">
@@ -19,9 +42,10 @@
         />
       </v-responsive>
       <div class="cover-image" />
-      <CompletionOverview :campaign="campaign" />
-    </v-col>
-  </div>
+      
+    </v-col> -->
+    </div>
+  </v-responsive>
 </template>
 
 <script>
@@ -35,19 +59,24 @@ export default {
   },
   props: {
     campaign: Object,
+    index: Number,
+    numberOfColumns: Number,
   },
   computed: {
-    ...mapGetters(['myCampaignsPortrait', 'campaignTypes', 'myCampaignsColumns']),
+    ...mapGetters([
+      'myCampaignsPortrait',
+      'campaignTypes',
+    ]),
   },
   methods: {
-    goToWizard() {
-      this.$router.push({
-        name: 'wizard-cover',
-        params: { campaignId: this.campaign.id },
-      });
-    },
+    // goToWizard() {
+    //   this.$router.push({
+    //     name: 'wizard-cover',
+    //     params: { campaignId: this.campaign.id },
+    //   });
+    // },
     getReadableType(type) {
-      return this.campaignTypes.find((itm) => itm.value === type).label;
+      return this.campaignTypes.find((itm) => itm.value === type).shortLabel;
     },
   },
 };
@@ -56,9 +85,11 @@ export default {
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
+$guttter: 7.5%;
+
 .campaign-list-item {
   border: 1px solid $greyDark;
-  background: $white50alpha;
+  background: rgba(black, 0.03);
   border-radius: 5px;
   margin-bottom: 20px;
   box-sizing: border-box;
@@ -69,40 +100,22 @@ export default {
   @extend .popIn;
   overflow: hidden;
   text-align: left;
+  line-height: 1.5em;
 
-  &:nth-of-type(3n) {
-    margin-right: 0;
+  .inner-container {
+    height: 100%;
   }
 
-  &::v-deep {
-    .col {
-      padding: 0;
+  .pic-ratio-box {
+    width: 28%;
+    margin: #{0.75 * $guttter} 0 #{0.75 * $guttter} #{0.75 * $guttter};
+    flex-grow: 0;
+
+    .pic {
+      width: 100% !important;
+      height: 100% !important;
+      border: 1px solid black !important;
     }
-  }
-
-  .tool-bar {
-    height: auto !important;
-    padding: 16px 26px;
-    // padding-bottom: 250px;
-
-    &::v-deep {
-      .v-toolbar__content {
-        height: auto !important;
-        padding: 0;
-      }
-    }
-
-    .type {
-      font-size: 15px;
-    }
-  }
-
-  .summary {
-    padding: 50px 30px;
-  }
-
-  .cover-image {
-    width: 100%;
 
     img {
       object-fit: cover;
@@ -110,5 +123,57 @@ export default {
       height: 100%;
     }
   }
+
+  .menu {
+    margin: #{0.75 * $guttter};
+    transform: translate(5px, -5px);
+  }
+
+  .name {
+    padding: 0 $guttter;
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: #{0.1 * $guttter};
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden
+    ;
+  }
+
+  .type {
+    padding: 0 $guttter;
+  }
+
+  // &::v-deep {
+  //   .col {
+  //     padding: 0;
+  //   }
+  // }
+
+  // .tool-bar {
+  //   height: auto !important;
+  //   padding: 16px 26px;
+  //   // padding-bottom: 250px;
+
+  //   &::v-deep {
+  //     .v-toolbar__content {
+  //       height: auto !important;
+  //       padding: 0;
+  //     }
+  //   }
+
+  //   .type {
+  //     font-size: 15px;
+  //   }
+  // }
+
+  // .summary {
+  //   padding: 50px 30px;
+  // }
+
+  // .cover-image {
+  //   width: 100%;
+  // }
 }
 </style>

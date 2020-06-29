@@ -41,15 +41,7 @@ export default {
 @import "@/shared-styles/index";
 
 .top-nav {
-  width: 100%;
-  flex-grow: 0;
-  border-bottom: 1px solid black;
-  background-color: rgba(255, 255, 255, 0.79);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11px 20px 10px;
-  box-sizing: border-box;
+  @extend %app-bar;
 
   .btn {
     padding: 0 20px;

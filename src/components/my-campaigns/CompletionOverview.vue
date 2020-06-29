@@ -1,38 +1,34 @@
 <template>
   <div class="completion-overview d-flex flex-column">
-    <div class="stage-list d-flex flex-column">
-      <template v-for="stage in stages">
-        <v-btn text ripple class="stage" :key="stage.txt">
-          <router-link
-            :to="{name: stage.linkTo}"
-            class="link d-flex justify-space-between"
-          >
-            <div class="stage-label-container">
-              <div class="label d-flex">
-                {{ stage.txt }}
-              </div>
-              <v-progress-linear
-                class="progress-bar"
-                :value="stage.completed"
-                background-color="rgba(0, 0, 0, 0.2)"
-                color="#000"
-              />
+    <template v-for="stage in stages">
+      <v-btn text ripple class="stage" :key="stage.txt">
+        <div class="stage-label-container" @click="goToWizard">
+            <div class="label">
+              {{ stage.txt }}
             </div>
-            <v-icon>mdi-chevron-right</v-icon>
-          </router-link>
-        </v-btn>
-      </template>
-      <v-btn
-        text
-        ripple
-        :disabled="!valid"
-        class="stage d-flex justify-space-between"
-      >
-        <div class="label d-flex">
-          Submit for review
-        </div>
+            <v-progress-linear
+              class="progress-bar"
+              :value="stage.completed"
+              background-color="rgba(0, 0, 0, 0.2)"
+              color="#000"
+            />
+            <div class="tip d-flex align-center">
+              <div class="led"/>
+              <div>{{stage.tip}}</div>
+            </div>
+          </div>
       </v-btn>
-    </div>
+    </template>
+    <v-btn
+      text
+      ripple
+      :disabled="!valid"
+      class="stage d-flex justify-center align-center submit-btn"
+    >
+      <div class="label d-flex">
+        Submit for review
+      </div>
+    </v-btn>
   </div>
 </template>
 
@@ -46,16 +42,19 @@ export default {
       {
         txt: 'Campaign page',
         completed: 50,
+        tip: 'Lorem Ipsum...',
         linkTo: 'wizard-cover',
       },
       {
         txt: 'Legal entity',
         completed: 25,
+        tip: 'Lorem Ipsum...',
         linkTo: 'undefined',
       },
       {
         txt: 'Payment gateway',
         completed: 10,
+        tip: 'Lorem Ipsum...',
         linkTo: 'undefined',
       },
     ];
@@ -85,28 +84,47 @@ export default {
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
+$guttter: 12%;
+
 .completion-overview {
   display: flex;
   justify-content: center;
   padding: 20px 0 0 0;
-
-  .stage-list {
-    width: 100%;
-  }
+  flex-grow: 1;
 
   .stage-label-container {
-    width: 100px;
+    width: 100%;
+    text-align: left;
   }
 
   .progress-bar {
     width: 100%;
+    height: 6px !important;
+    border-radius: 4px;
     margin-top: 5px;
+  }
+
+  .tip {
+    text-transform: none;
+    margin-top: 5px;
+  }
+
+  .led {
+    background: white;
+    border: 1px solid rgba(black, 0.5);
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin-right: 10px;
   }
 
   .stage {
     border-radius: 0;
-    height: 43px;
-    padding: 0 26px;
+    height: 25%;
+    box-sizing: border-box;
+    padding: 0 $guttter;
+    border-top: 1px solid rgba(black, 1);
   }
 
   .link {
@@ -135,10 +153,7 @@ export default {
   }
 
   .submit-btn {
-    // background-color: black;
-    // color: white;
-    transition: 0.5s $ease;
-    width: 100px;
+    background-color: rgba(black, 0.05);
 
     &:disabled {
       // background-color: rgba(black, 0.1);
