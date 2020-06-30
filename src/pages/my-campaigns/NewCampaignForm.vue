@@ -124,7 +124,7 @@ export default {
         type: this.type,
       });
       promise.then(campaignId => {
-        that.$router.push({ name: 'wizard-cover', params: { campaignId } });
+        that.$router.push({ name: 'campaign-editor-cover', params: { campaignId } });
       });
     },
   },

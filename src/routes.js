@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Wizard from '@/components/wizard/Wizard';
-import Cover from '@/components/wizard/cover/Cover';
-import GoalTime from '@/components/wizard/goal-time/GoalTime';
-import Story from '@/components/wizard/story/Story';
-import Levels from '@/components/wizard/levels/Levels';
-import Teams from '@/components/wizard/teams/Teams';
-import Matchers from '@/components/wizard/matchers/Matchers';
-import Customize from '@/components/wizard/customize/Customize';
-import MyCampaigns from '@/components/my-campaigns/MyCampaigns';
+import MyCampaigns from '@/pages/my-campaigns/MyCampaigns';
+import CampaignEditor from '@/pages/campaign-editor/CampaignEditor';
+import CampaignEditorCover from '@/pages/campaign-editor/cover/Cover';
+import CampaignEditorGoalTime from '@/pages/campaign-editor/goal-time/GoalTime';
+import CampaignEditorStory from '@/pages/campaign-editor/story/Story';
+import CampaignEditorLevels from '@/pages/campaign-editor/levels/Levels';
+import CampaignEditorTeams from '@/pages/campaign-editor/teams/Teams';
+import CampaignEditorMatchers from '@/pages/campaign-editor/matchers/Matchers';
+import CampaignEditorCustomize from '@/pages/campaign-editor/customize/Customize';
 
 Vue.use(Router);
 /* 
@@ -30,44 +30,44 @@ export default new Router({
       component: MyCampaigns,
     },
     {
-      path: '/:campaignId/wizard',
-      name: 'wizard',
-      component: Wizard,
+      path: '/:campaignId/editor',
+      name: 'campaign-editor',
+      component: CampaignEditor,
       children: [
         {
           path: 'cover',
-          name: 'wizard-cover',
-          component: Cover,
+          name: 'campaign-editor-cover',
+          component: CampaignEditorCover,
         },
         {
           path: 'goal-and-time',
-          name: 'wizard-goal-and-time',
-          component: GoalTime,
+          name: 'campaign-editor-goal-and-time',
+          component: CampaignEditorGoalTime,
         },
         {
           path: 'story',
-          name: 'wizard-story',
-          component: Story,
+          name: 'campaign-editor-story',
+          component: CampaignEditorStory,
         },
         {
           path: 'levels',
-          name: 'wizard-levels',
-          component: Levels,
+          name: 'campaign-editor-levels',
+          component: CampaignEditorLevels,
         },
         {
           path: 'teams',
-          name: 'wizard-teams',
-          component: Teams,
+          name: 'campaign-editor-teams',
+          component: CampaignEditorTeams,
         },
         {
           path: 'matchers',
-          name: 'wizard-matchers',
-          component: Matchers,
+          name: 'campaign-editor-matchers',
+          component: CampaignEditorMatchers,
         },
         {
           path: 'customize',
-          name: 'wizard-customize',
-          component: Customize,
+          name: 'campaign-editor-customize',
+          component: CampaignEditorCustomize,
         },
       ],
     },

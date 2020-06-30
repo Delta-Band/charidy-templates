@@ -1,29 +1,30 @@
 <template>
-  <div class="story">
+  <div class="levels">
     <DummyField />
     <BottomNav
       :routeName="{
-        next: 'wizard-levels',
-        prev: 'wizard-goal-and-time',
+        next: 'campaign-editor-teams',
+        prev: 'campaign-editor-story',
       }"
     />
   </div>
 </template>
 
 <script>
-import BottomNav from '../BottomNav';
+import BottomNav from '@/shared-components/wizard/BottomNav';
 import DummyField from './DummyField';
 
 export default {
-  name: 'Story',
+  name: 'CampaignEditorLevels',
   components: {
     BottomNav,
     DummyField,
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.story {
-}
+  .levels {
+
+  }
 </style>

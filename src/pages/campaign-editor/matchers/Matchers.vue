@@ -3,19 +3,19 @@
     <DummyField />
     <BottomNav
       :routeName="{
-        next: 'wizard-customize',
-        prev: 'wizard-teams',
+        next: 'campaign-editor-customize',
+        prev: 'campaign-editor-teams',
       }"
     />
   </div>
 </template>
 
 <script>
-import BottomNav from '../BottomNav';
+import BottomNav from '@/shared-components/wizard/BottomNav';
 import DummyField from './DummyField';
 
 export default {
-  name: 'Matchers',
+  name: 'CampaignEditorMatchers',
   components: {
     BottomNav,
     DummyField,

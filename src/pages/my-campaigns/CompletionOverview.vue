@@ -73,7 +73,7 @@ export default {
   methods: {
     goToWizard() {
       this.$router.push({
-        name: 'wizard-cover',
+        name: 'campaign-editor-cover',
         params: { campaignId: this.campaign.id },
       });
     },

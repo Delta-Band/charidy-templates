@@ -61,8 +61,7 @@
           container="#my-campaigns"
         >
           <template v-slot:title>
-            <v-icon class="icon">mdi-plus</v-icon>
-            New Campaign
+            <div class="new-campaign-toggle-txt">New Campaign</div>
           </template>
           <template v-slot:content>
             <NewCampaignForm />
@@ -205,6 +204,10 @@ $gutter: 10vw;
   margin-bottom: #{0.3 * $gutter};
 }
 
+.new-campaign-toggle-txt {
+  height: 16px;
+}
+
 .campaign-list {
   flex-grow: 0;
   position: relative;
@@ -216,30 +219,31 @@ $gutter: 10vw;
   }
 }
 
-.chip {
-  // border-radius: 3px;
-  padding: 0 20px;
-  height: 33px;
-  margin: 0 10px 0 0;
-  transform: translateX(-7px);
-}
+// .chip {
+//   // border-radius: 3px;
+//   padding: 0 20px;
+//   height: 33px;
+//   margin: 0 10px 0 0;
+//   transform: translateX(-7px);
+// }
 
-.search-box {
-  max-width: 400px;
+// .search-box {
+//   max-width: 400px;
 
-  &::v-deep {
-    .v-input__slot {
-      padding-left: 20px;
-    }
-  }
-}
+//   &::v-deep {
+//     .v-input__slot {
+//       padding-left: 20px;
+//     }
+//   }
+// }
 
 .app-bar {
   @extend %app-bar;
 }
 </style>
 
-// <style lang="scss">
+//
+<style lang="scss">
 // .search-menu {
 //   background: green;
 //   border-radius: 5px !important;
@@ -247,5 +251,5 @@ $gutter: 10vw;
 //   // min-width: 0 !important;
 //   transform: translate(0, 7px);
 // }
-// </style>
-
+//
+</style>

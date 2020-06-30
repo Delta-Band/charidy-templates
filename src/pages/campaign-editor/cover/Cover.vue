@@ -5,7 +5,7 @@
     <CampaignTitle />
     <BottomNav
       :routeName="{
-        next: 'wizard-goal-and-time',
+        next: 'campaign-editor-goal-and-time',
       }"
     />
     <Collapsable
@@ -26,11 +26,11 @@ import CoverMedia from './CoverMedia.vue';
 import CampaignTitle from './CampaignTitle.vue';
 import Countdown from './Countdown.vue';
 import Collapsable from '@/shared-components/Collapsable.vue';
-import BottomNav from '../BottomNav';
+import BottomNav from '@/shared-components/wizard/BottomNav';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'Cover',
+  name: 'CampaignEditorCover',
   components: {
     CoverMedia,
     CampaignTitle,

@@ -1,8 +1,18 @@
 <template>
   <div id="wizard">
-    <TopNav />
+    <div class="top-nav">
+    <section class="left">
+      <slot name="nav-left"></slot>
+    </section>
+    <section class="center">
+      <slot name="nav-center"></slot>
+    </section>
+    <section class="right">
+      <slot name="nav-right"></slot>
+    </section>
+  </div>
     <div id="wizard-content">
-      <Steps />
+      <Steps :steps="steps" />
       <router-view />
     </div>
     <SaveIndicator v-if="showSavedIndicator"/>
@@ -10,17 +20,18 @@
 </template>
 
 <script>
-import TopNav from './TopNav.vue';
-import Steps from './steps/Steps.vue';
+import Steps from './Steps.vue';
 import SaveIndicator from './SaveIndicator.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Wizard',
   components: {
-    TopNav,
     Steps,
     SaveIndicator,
+  },
+  props: {
+    steps: Array,
   },
   computed: {
     ...mapGetters([
@@ -62,5 +73,15 @@ export default {
   overflow: auto;
   flex-grow: 1;
   box-sizing: border-box;
+}
+
+.top-nav {
+  @extend %app-bar;
+
+  .right {
+    .btn {
+      margin-left: 20px;
+    }
+  }
 }
 </style>

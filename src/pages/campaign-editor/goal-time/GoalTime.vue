@@ -1,32 +1,29 @@
 <template>
-  <div class="customize">
+  <div class="goal-time-page">
     <DummyField />
     <BottomNav
       :routeName="{
-        next: 'my-campaigns',
-        prev: 'wizard-matchers',
+        next: 'campaign-editor-story',
+        prev: 'campaign-editor-cover',
       }"
     />
   </div>
 </template>
 
 <script>
+import BottomNav from '@/shared-components/wizard/BottomNav';
 import DummyField from './DummyField';
-import BottomNav from '../BottomNav';
 
 export default {
-  name: 'Customize',
+  name: 'CampaignEditorGoalTime',
   components: {
-    DummyField,
     BottomNav,
+    DummyField,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.leave-wrapper {
-  padding: 0 10%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+.goal-time-page {
 }
 </style>

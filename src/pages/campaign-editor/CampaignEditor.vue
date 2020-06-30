@@ -1,32 +1,78 @@
 <template>
-  <div class="top-nav">
-    <section class="left">
+  <Wizard :steps="steps">
+    <template v-slot:nav-left>
       <v-btn class="exit btn" text ripple rounded @click="exitWizard">
         <v-icon class="icon" :class="{ 'center-me': wizardPortrait }"
           >mdi-view-grid</v-icon
         >
         <span v-if="!wizardPortrait">My Campaigns</span>
       </v-btn>
-    </section>
-    <section class="center">
+    </template>
+    <template v-slot:nav-center>
       <h3>{{ details ? details.name : 'Campaign not found!' }}</h3>
-    </section>
-    <section class="right">
+    </template>
+    <template v-slot:nav-right>
       <v-btn class="preview btn" text ripple rounded>
         <v-icon class="icon" :class="{ 'center-me': wizardPortrait }"
           >mdi-eye-outline</v-icon
         >
         <span v-if="!wizardPortrait">Preview</span>
       </v-btn>
-    </section>
-  </div>
+    </template>
+  </Wizard>
 </template>
 
 <script>
+import Wizard from '@/shared-components/wizard/Wizard.vue';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'TopNav',
+  name: 'CampaignEditor',
+  components: {
+    Wizard,
+  },
+  data() {
+    const steps = [
+      {
+        txt: 'Cover',
+        completed: 50,
+        linkTo: 'campaign-editor-cover',
+      },
+      {
+        txt: 'Goal & Time',
+        completed: 25,
+        linkTo: 'campaign-editor-goal-and-time',
+      },
+      {
+        txt: 'Story',
+        completed: 10,
+        linkTo: 'campaign-editor-story',
+      },
+      {
+        txt: 'Levels',
+        completed: 0,
+        linkTo: 'campaign-editor-levels',
+      },
+      {
+        txt: 'Teams',
+        completed: 0,
+        linkTo: 'campaign-editor-teams',
+      },
+      {
+        txt: 'Matchers',
+        completed: 75,
+        linkTo: 'campaign-editor-matchers',
+      },
+      {
+        txt: 'Customize',
+        completed: 0,
+        linkTo: 'campaign-editor-customize',
+      },
+    ];
+    return {
+      steps,
+    };
+  },
   methods: {
     exitWizard() {
       this.$router.push({ name: 'my-campaigns' });
@@ -38,16 +84,13 @@ export default {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
-.top-nav {
-  @extend %app-bar;
-
-  .btn {
+.btn {
     padding: 0 20px;
     min-width: 150px;
     text-transform: none;
@@ -65,26 +108,5 @@ export default {
         margin-right: 0;
       }
     }
-
-    &.save {
-      background-color: black;
-      color: white;
-      padding: 0 40px;
-    }
   }
-
-  .right {
-    .btn {
-      margin-left: 20px;
-    }
-  }
-}
-
-section {
-  display: flex;
-}
-// button {
-//   @extend .button;
-//   text-transform: uppercase;
-// }
 </style>

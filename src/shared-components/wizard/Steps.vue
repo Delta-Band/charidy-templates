@@ -67,47 +67,12 @@ export default {
     Step,
     StepAsMenuItem,
   },
+  props: {
+    steps: Array,
+  },
   data() {
-    const steps = [
-      {
-        txt: 'Cover',
-        completed: 50,
-        linkTo: 'wizard-cover',
-      },
-      {
-        txt: 'Goal & Time',
-        completed: 25,
-        linkTo: 'wizard-goal-and-time',
-      },
-      {
-        txt: 'Story',
-        completed: 10,
-        linkTo: 'wizard-story',
-      },
-      {
-        txt: 'Levels',
-        completed: 0,
-        linkTo: 'wizard-levels',
-      },
-      {
-        txt: 'Teams',
-        completed: 0,
-        linkTo: 'wizard-teams',
-      },
-      {
-        txt: 'Matchers',
-        completed: 75,
-        linkTo: 'wizard-matchers',
-      },
-      {
-        txt: 'Customize',
-        completed: 0,
-        linkTo: 'wizard-customize',
-      },
-    ];
     return {
-      steps,
-      currentStep: steps[0].linkTo,
+      currentStep: this.steps[0].linkTo,
     };
   },
   created() {

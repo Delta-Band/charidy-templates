@@ -1,10 +1,7 @@
 <template>
   <section class="collapsable">
     <v-btn class="collapsable-btn" text ripple @click="toggleAdvancedMode">
-      <v-row align="center" justify="center">
-        <slot name="title" />
-        <!-- <v-icon class="icon" :class="isOpen ? 'open' : 'closed'">mdi-arrow-down</v-icon> -->
-      </v-row>
+      <slot name="title" />
     </v-btn>
     <div
       class="collapsable-container"
@@ -26,9 +23,7 @@
       @click="toggleAdvancedMode"
       :class="{ show: isOpen }"
     >
-      <v-row align="center" justify="center">
-        <v-icon class="icon">mdi-close</v-icon>Close
-      </v-row>
+      <div class=close-btn-txt>Close</div>
     </v-btn>
   </section>
 </template>
@@ -108,10 +103,11 @@ export default {
     justify-content: center;
     padding: 30px 20px 26px;
     width: 100%;
-    height: auto;
     // margin-top: -30px;
     background-color: $greyLight;
     border-radius: 0;
+    line-height: 1em;
+    height: 56px !important;
 
     // .icon {
     //   transition: 0.25s $ease;
@@ -144,8 +140,12 @@ export default {
     .icon {
       font-size: 20px;
       margin-right: 10px;
-      transform: translateY(-1px);
+      // transform: translateY(-1px);
     }
+  }
+  .close-btn-txt {
+    height: 16px;
+    transform: translateY(1px);
   }
 }
 </style>
