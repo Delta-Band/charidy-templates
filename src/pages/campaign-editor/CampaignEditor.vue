@@ -84,29 +84,39 @@ export default {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     },
   },
-}
+  watch: {
+    details: {
+      immediate: true,
+      handler: function(newVal) {
+        if (!newVal) {
+          this.$router.push({ name: 'my-campaigns' });
+        }
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import '@/shared-styles/index';
 
 .btn {
-    padding: 0 20px;
-    min-width: 150px;
-    text-transform: none;
-    font-family: inherit;
-    letter-spacing: unset;
-    font-size: 16px;
-    transition: 0.5s $ease;
+  padding: 0 20px;
+  min-width: 150px;
+  text-transform: none;
+  font-family: inherit;
+  letter-spacing: unset;
+  font-size: 16px;
+  transition: 0.5s $ease;
 
-    .icon {
-      margin-right: 10px;
-      font-size: 22px;
-      transform: translateY(-0.5px);
+  .icon {
+    margin-right: 10px;
+    font-size: 22px;
+    transform: translateY(-0.5px);
 
-      &.center-me {
-        margin-right: 0;
-      }
+    &.center-me {
+      margin-right: 0;
     }
   }
+}
 </style>

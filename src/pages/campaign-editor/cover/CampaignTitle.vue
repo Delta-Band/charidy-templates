@@ -65,6 +65,15 @@ export default {
       return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     },
   },
+  watch: {
+    details: {
+      handler: function(newVal) {
+        if (!newVal) {
+          this.$router.push({ name: 'my-campaigns' });
+        }
+      },
+    },
+  },
   methods: {
     ...mapActions(['updateCampaign', 'showSavedIndicator']),
     saveTitle(val) {

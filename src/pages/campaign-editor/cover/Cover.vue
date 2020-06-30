@@ -44,14 +44,14 @@ export default {
   }),
   computed: {
     ...mapGetters(['wizardPortrait', 'campaignDetails']),
+    details() {
+      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
+    },
   },
   methods: {
     ...mapActions(['wizardUpdatePortrait', 'wizardUpdateCover']),
     toggleAdvancedMode() {
       this.advanced = !this.advanced;
-    },
-    details() {
-      return this.campaignDetails(this.$router.currentRoute.params.campaignId);
     },
     goToNextPage() {
       this.$router.push({
