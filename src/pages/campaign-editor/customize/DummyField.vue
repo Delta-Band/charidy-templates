@@ -1,11 +1,16 @@
 <template>
-  <div class="dummy-title" :class="{
-        'portrait': wizardPortrait,
-        }">
-    <section :class="{
-        'top': wizardPortrait,
-        'left': !wizardPortrait,
-        }">
+  <div
+    class="dummy-title"
+    :class="{
+      portrait: wizardPortrait
+    }"
+  >
+    <section
+      :class="{
+        top: wizardPortrait,
+        left: !wizardPortrait
+      }"
+    >
       <div class="label">
         Title
         <RequiredTag />
@@ -14,36 +19,41 @@
     </section>
     <section
       :class="{
-        'bottom': wizardPortrait,
-        'right': !wizardPortrait,
-        }"
+        bottom: wizardPortrait,
+        right: !wizardPortrait
+      }"
     >
       <div class="input-title">Title</div>
-      <v-text-field height="50" class="text-input" counter color="#000"></v-text-field>
+      <v-text-field
+        height="50"
+        class="text-input"
+        counter
+        color="#000"
+      ></v-text-field>
       <Tip class="text-input-tip">Title tip...</Tip>
     </section>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import Tip from "@/shared-components/Tip";
-import RequiredTag from "@/shared-components/RequiredTag";
+import { mapGetters } from 'vuex';
+import Tip from '@/shared-components/Tip';
+import RequiredTag from '@/shared-components/RequiredTag';
 
 export default {
-  name: "DummyField",
+  name: 'DummyField',
   components: {
     Tip,
-    RequiredTag,
+    RequiredTag
   },
   computed: {
-    ...mapGetters(["wizardPortrait"])
+    ...mapGetters(['wizardPortrait'])
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/shared-styles/index";
+@import '@/shared-styles/index';
 
 .dummy-title {
   width: 100%;
